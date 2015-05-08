@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SocialNet.ViewModels.UserStatus>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusBody)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusBody)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserStatusID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserStatusID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserStatusID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SocialNet.Service;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SocialNet.Models
@@ -64,6 +66,7 @@ namespace SocialNet.Models
 
     public class RegisterViewModel
     {
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -79,6 +82,58 @@ namespace SocialNet.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "First name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last name")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Date of birth")]
+        public DateTime DateOfBirth { get; set; }
+
+        [Display(Name = "Gender")]
+        public bool Gender { get; set; }
+
+        [Display(Name = "Relationship status")]
+        public bool IsSingle { get; set; }
+
+        [Display(Name = "About")]
+        public string AboutUser { get; set; }
+    }
+
+    public class RegisterPersonaViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Display(Name = "Date started")]
+        public DateTime DateOfBirth { get; set; }
+
+        [Display(Name = "About")]
+        public string AboutUser { get; set; }
+
+        [Display(Name = "Description")]
+        public PersonaType PersonaType { get; set; }
     }
 
     public class ResetPasswordViewModel

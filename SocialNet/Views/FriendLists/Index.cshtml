@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SocialNet.ViewModels.FriendList>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FriendName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FriendIsTopFriend)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FriendName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FriendIsTopFriend)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FriendID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FriendID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FriendID })
+        </td>
+    </tr>
+}
+
+</table>
