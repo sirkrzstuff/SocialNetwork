@@ -31,8 +31,8 @@
 body {
     padding-left: 110px;
     background-image: url(../images/bg2.jpg);
-    overflow: hidden;
-    height: 100%;
+    height: 92vh;
+    /*overflow-y: hidden;*/
 }
 
 body > #container {
@@ -177,26 +177,26 @@ body > #container {
     overflow: scroll;
     overflow-x: hidden;
     width: 75%;
-    height: 590px;
+    height: 92vh;
     border-left: 1px solid #dddddd;
 }
 
 .wall-posts {
     padding-left: 15px;
-    height: 80%;
+    height: 92vh;
 }
 
 .rightnav {
     overflow: hidden;
     width: 20%;
-    height: 590px;
+    height: 92vh;
 }
 
 .rightnav-buttons {
     background-color: #eeeeee;
     padding: 20px 0px 0px 30px;
     width: 100%;
-    height: 35%;
+    height: 32.2vh;
     float: left;
     overflow: hidden;
 }
@@ -218,7 +218,7 @@ body > #container {
     background-color: #eeeeee;
     overflow: hidden;
     padding: 10px 10px 0px 30px;
-    height: 8%;
+    height: 8vh;
 }
 
 .horizontalLine {
@@ -230,7 +230,7 @@ body > #container {
     padding: 10px;
     overflow: scroll;
     overflow-x: hidden;
-    height: 55%;
+    height: 52vh;
 }
 
 .StatusForm {
