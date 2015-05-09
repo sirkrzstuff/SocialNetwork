@@ -16,9 +16,9 @@ namespace SocialNet.Service
 
             var friends = new List<string>();
 
-            var statuses = (from s in db.UserStatuses
+            /*var statuses = (from s in db.UserStatuses
                             where friends.Contains(s.UserName)
-                            select s).ToList();
+                            select s).ToList();*/
 
             return new List<UserStatus>();
         }
