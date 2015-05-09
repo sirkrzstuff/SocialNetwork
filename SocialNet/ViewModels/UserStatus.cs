@@ -1,13 +1,16 @@
-﻿using SocialNet.Models;
-using System;
+﻿using System;
+using System.Linq;
+using System.Web;
+using SocialNet.Controllers;
+using SocialNet.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
+using System.Data.Entity;
 
 namespace SocialNet.ViewModels
 {
+    [Table("UserStatus")]
     public class UserStatus
     {
         [Key]

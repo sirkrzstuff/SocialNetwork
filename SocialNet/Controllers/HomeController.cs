@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using SocialNet.ViewModels;
 using SocialNet.Models;
 using SocialNet.Service;
+using System.Web.Security;
+using Microsoft.AspNet.Identity;
+using System.Web.UI.WebControls;
 
 namespace SocialNet.Controllers
 {
