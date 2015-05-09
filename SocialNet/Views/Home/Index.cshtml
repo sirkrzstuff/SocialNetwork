@@ -4,6 +4,7 @@
 }
 
 <body>
+    @{Html.RenderPartial("LoginBar", "Shared");}
     <div class="main-container">
         <div class="wall-posts">
             <div class="New-status">
@@ -19,34 +20,9 @@
                     <p>@u.StatusBody</p>
                 </div>
             }
-            <div class="StatusForm">
-                <p>bla</p>
-            </div>
         </div>
     </div>
     <div class="rightnav">
-        <div class="rightnav-buttons">
-            <input type="button" value="Wall Posts" class="btn-info Wall-btn" />
-            <input type="button" value="Photos" class="btn-info Photos-btn" />
-        </div>
-        <div class="select-groupOronline">
-            <input type="button" value="Groups" class="btn-info" style="width: 75px;" />
-            <input type="button" value="Who's Online" class="btn-info" />
-        </div>
-        <div class="groupsORonline">
-            <p>Vinur 1</p>
-            <p>Vinur 1</p>
-            <p>Vinur 1</p>
-            <p>Vinur 1</p>
-            <p>Vinur 1</p>
-            <p>Vinur 1</p>
-            <p>Vinur 1</p>
-            <p>Vinur 2</p>
-            <p>Vinur 3</p>
-            <p>Vinur 4</p>
-            <p>Vinur 5</p>
-            <p>Vinur 6</p>
-            <p>Vinur 7</p>
-        </div>
+        @Html.Action("RightBar", "Home")
     </div>
 </body>

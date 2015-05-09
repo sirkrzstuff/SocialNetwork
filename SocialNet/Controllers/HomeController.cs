@@ -15,7 +15,7 @@ namespace SocialNet.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        [Authorize]
         public ActionResult Index()
         {
            //Code for Status updates
@@ -28,6 +28,7 @@ namespace SocialNet.Controllers
             return View(model);
         }
 
+        [Authorize]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -35,10 +36,17 @@ namespace SocialNet.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult RightBar()
+        {
             return View();
         }
 

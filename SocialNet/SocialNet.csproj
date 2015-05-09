@@ -159,8 +159,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FollowerListsController.cs" />
+    <Compile Include="Controllers\FriendListsController.cs" />
+    <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PhotosController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UserStatusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -168,7 +174,17 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\PersonaType.cs" />
+    <Compile Include="Service\PhotoAvatarAndBackground.cs" />
+    <Compile Include="Service\StatusService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Comment.cs" />
+    <Compile Include="ViewModels\FollowerList.cs" />
+    <Compile Include="ViewModels\FriendList.cs" />
+    <Compile Include="ViewModels\Groups.cs" />
+    <Compile Include="ViewModels\Photo.cs" />
+    <Compile Include="ViewModels\User.cs" />
+    <Compile Include="ViewModels\UserStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -226,6 +242,38 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\FollowerLists\Create.cshtml" />
+    <Content Include="Views\FollowerLists\Delete.cshtml" />
+    <Content Include="Views\FollowerLists\Details.cshtml" />
+    <Content Include="Views\FollowerLists\Edit.cshtml" />
+    <Content Include="Views\FollowerLists\Index.cshtml" />
+    <Content Include="Views\FriendLists\Create.cshtml" />
+    <Content Include="Views\FriendLists\Delete.cshtml" />
+    <Content Include="Views\FriendLists\Details.cshtml" />
+    <Content Include="Views\FriendLists\Edit.cshtml" />
+    <Content Include="Views\FriendLists\Index.cshtml" />
+    <Content Include="Views\Groups\Create.cshtml" />
+    <Content Include="Views\Groups\Delete.cshtml" />
+    <Content Include="Views\Groups\Details.cshtml" />
+    <Content Include="Views\Groups\Edit.cshtml" />
+    <Content Include="Views\Groups\Index.cshtml" />
+    <Content Include="Views\Photos\Create.cshtml" />
+    <Content Include="Views\Photos\Delete.cshtml" />
+    <Content Include="Views\Photos\Details.cshtml" />
+    <Content Include="Views\Photos\Edit.cshtml" />
+    <Content Include="Views\Photos\Index.cshtml" />
+    <Content Include="Views\UserStatus\Create.cshtml" />
+    <Content Include="Views\UserStatus\Delete.cshtml" />
+    <Content Include="Views\UserStatus\Details.cshtml" />
+    <Content Include="Views\UserStatus\Edit.cshtml" />
+    <Content Include="Views\UserStatus\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Home\RightBar.cshtml" />
+    <Content Include="Views\Shared\LoginBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
