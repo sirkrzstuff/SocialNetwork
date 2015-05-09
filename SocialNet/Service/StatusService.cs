@@ -9,6 +9,7 @@ namespace SocialNet.Service
 {
     public class StatusService
     {
+       
         public List<UserStatus> GetLatestForUser(string UserName)
         {
             var db = new ApplicationDbContext();

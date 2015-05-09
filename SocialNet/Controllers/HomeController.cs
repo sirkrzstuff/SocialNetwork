@@ -14,6 +14,8 @@ namespace SocialNet.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
            //Code for Status updates
@@ -21,7 +23,9 @@ namespace SocialNet.Controllers
 
             var statuses = service.GetLatestForUser(this.User.Identity.Name);
 
-            return View(statuses);
+            var model = db.UserStatuses.ToList();
+
+            return View(model);
         }
 
         public ActionResult About()
@@ -37,5 +41,6 @@ namespace SocialNet.Controllers
 
             return View();
         }
+
     }
 }

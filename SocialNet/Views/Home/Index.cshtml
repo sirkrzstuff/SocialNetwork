@@ -1,7 +1,4 @@
-﻿@using SocialNet.ViewModels;
-@using System.Web.Mvc;
-
-@model IEnumerable<UserStatus>
+﻿@model IEnumerable<SocialNet.ViewModels.UserStatus>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -9,29 +6,15 @@
 <body>
     <div class="main-container">
         <div class="wall-posts">
+            @foreach(var u in Model)
+            {
+                <div class="StatusForm">
+                    <p style="color: grey;">Name = @u.UserName | @u.StatusDate | ID = @u.UserStatusID</p>
+                    <p>@u.StatusBody</p>
+                </div>
+            }
             <div class="StatusForm">
-                @foreach (UserStatus u in @Model)
-                {
-                    @u.StatusBody <br />
-                }
-            </div>
-            <div class="StatusForm">
-                <h1>Hérna er einhver wall post 2</h1>
-            </div>
-            <div class="StatusForm">
-                <h1>Hérna er einhver wall post 3</h1>
-            </div>
-            <div class="StatusForm">
-                <h1>Hérna er einhver wall post 4</h1>
-            </div>
-            <div class="StatusForm">
-                <h1>Hérna er einhver wall post 5</h1>
-            </div>
-            <div class="StatusForm">
-                <h1>Hérna er einhver wall post 6</h1>
-            </div>
-            <div class="StatusForm">
-                <h1>Hérna er einhver wall post 7</h1>
+                <p>bla</p>
             </div>
         </div>
     </div>

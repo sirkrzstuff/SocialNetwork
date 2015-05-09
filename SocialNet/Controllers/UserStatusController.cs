@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SocialNet.Models;
 using SocialNet.ViewModels;
+using SocialNet.Service;
 
 namespace SocialNet.Controllers
 {

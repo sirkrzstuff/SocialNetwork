@@ -10,7 +10,6 @@ using System.Data.Entity;
 
 namespace SocialNet.ViewModels
 {
-    [Table("UserStatus")]
     public class UserStatus
     {
         [Key]
