@@ -1,13 +1,14 @@
 ﻿@using Microsoft.AspNet.Identity
-
-<div class="rightnav-buttons">
-    <input type="button" value="Wall Posts" class="btn-info Wall-btn" />
-    <input type="button" value="Photos" class="btn-info Photos-btn" />
-</div>
-<div class="select-groupOronline">
-    <input type="button" value="Groups" class="btn-info" style="width: 75px;" />
-    <input type="button" value="Who's Online" class="btn-info" />
-</div>
-<div class="groupsORonline">
-    <p>@Html.ActionLink(User.Identity.GetUserName(),"Index", "Manage")</p>
+<div class="rightnav">
+    <div class="rightnav-buttons">
+        <input type="button" value="Wall Posts" class="Wall-btn" />
+        <input type="button" value="Photos" class="Photos-btn" />
+    </div>
+    <div class="select-groupOronline">
+        <input type="button" value="Groups" class="gr-ol-btn" style="width: 75px;" />
+        <input type="button" value="Who's Online" class="gr-ol-btn" />
+    </div>
+    <div class="groupsORonline">
+        <p>@Html.ActionLink(User.Identity.GetUserName(), "Profile", "Home")</p>
+    </div>
 </div>

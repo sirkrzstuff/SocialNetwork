@@ -45,10 +45,22 @@ namespace SocialNet.Controllers
         }
 
         [Authorize]
+        public ActionResult Profile()
+        {
+            var model = db.UserStatuses.ToList();
+            return View(model);
+        }
+
+        [Authorize]
         public ActionResult RightBar()
         {
             return View();
         }
 
+        [Authorize]
+        public ActionResult ProfileBar()
+        {
+            return View();
+        }
     }
 }

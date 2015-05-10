@@ -198,3 +198,13 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+
+# möppur sem við viljum ekki committa
+SocialNet/bin/
+SocialNet/bin
+/SocialNet/bin
+/SocialNet/bin/*
+SocialNet/obj/
+SocialNet/obj/*
+/SocialNet/obj/
+/SocialNet/obj/*

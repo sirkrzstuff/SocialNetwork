@@ -193,7 +193,7 @@ body > #container {
 }
 
 .rightnav-buttons {
-    background-color: #eeeeee;
+    border-right: 1px solid #eeeeee;
     padding: 20px 0px 0px 30px;
     width: 100%;
     height: 32.2vh;
@@ -204,24 +204,46 @@ body > #container {
 .Wall-btn {
     margin-bottom: 5px;
     font-size: 25px;
-    color: black;
+    background-color: #eeeeee;
+    border: 1px solid #999;
     padding: 20px 30px 20px 30px;
+}
+
+.Wall-btn:hover {
+    background-color: #bce1e8;
 }
 
 .Photos-btn {
     font-size: 25px;
     color: black;
+    background-color: #eeeeee;
+    border: 1px solid #999;
     padding: 20px 50px 20px 50px;
 }
 
+.Photos-btn:hover {
+    background-color: #bce1e8;
+}
+
 .select-groupOronline {
-    background-color: #eeeeee;
+    border-right: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #eeeeee;
     overflow: hidden;
     padding: 10px 10px 0px 30px;
     height: 8vh;
 }
 
-.horizontalLine {
+.gr-ol-btn {
+    background-color: #eeeeee;
+    border: 1px solid #999;
+}
+
+.gr-ol-btn:hover {
+    background-color: #bce1e8;
+}
+
+.horizontalLine { /*Ekki í notkun eins og er*/
     background-color: #eeeeee;
     color:black;
 }
@@ -236,7 +258,7 @@ body > #container {
 .StatusForm {
     margin: 20px;
     height: 150px;
-    border: 1px solid #eeeeee;
+    border: 1px solid #999;
     padding: 50px;
     border-radius: 25px;
 }
@@ -244,9 +266,98 @@ body > #container {
 .New-status {
     margin: 20px;
     height: 50px;
-    padding: 10px;
-    border: 1px solid #eeeeee;
+    padding: 10px 0px 43px 10px;
+    border: 1px solid #999;
     border-radius: 25px;
+}
+
+.Profile-wall {
+    float: left;
+    overflow: scroll;
+    overflow-x: hidden;
+    width: 55%;
+    padding-right: 20px;
+    height: 92vh;
+    border-left: 1px solid #dddddd;
+}
+
+.About-container {
+    height: 250px;
+    padding: 25px;
+    border-bottom: 2px solid black;
+}
+
+.profile-about-text {
+    width: 100%;
+    height: 75%;
+    font-style: italic;
+}
+
+.profile-image {
+    margin: 20px 20px 10px 20px;
+    border: 1px solid #eeeeee;
+    width: 160px;
+    height: 160px;
+}
+
+.profile-nav {
+    float: left;
+    height: 92vh;
+    width: 200px;
+    border-right: 1px solid #eeeeee;
+    border-left: 1px solid #eeeeee;
+}
+
+.profile-name {
+    font-family: Century;
+    text-align: center;
+    font-weight: bold;
+}
+
+.user-info-profileNav {
+    padding: 10px 20px 0px 20px;
+    text-align: left;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.user-info-profileNav > p {
+    font-size: 12px;
+    line-height: 7px;
+}
+
+.profile-links {
+    border-bottom: 1px solid #eeeeee;
+    margin: 0px 20px 0px 20px;
+    padding: 10px;
+    font-weight: bolder;
+}
+
+.profile-buttons {
+    background-color: #eeeeee;
+    text-align: center;
+    font-size: 18px;
+    padding: 5px 0px 5px 0px;
+    width: 140px;
+    border: 1px solid #999;
+}
+
+.profile-buttons-edit {
+    background-color: #eeeeee;
+    text-align: center;
+    font-size: 18px;
+    padding: 5px 0px 5px 0px;
+    width: 140px;
+    border: 1px solid #999;
+    color: #0094ff;
+}
+
+.profile-buttons:hover {
+    background-color: #bce1e8;
+}
+
+.profile-buttons-edit:hover{
+    color: black;
+    background-color: #bce1e8;
 }
 
 /* Kóði fyrir SocialWeb endar hér!*/

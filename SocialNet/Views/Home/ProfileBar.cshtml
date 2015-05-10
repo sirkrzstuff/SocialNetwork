@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNet.Identity;
+<div class="profile-nav">
+    <div>
+        <input type="image" alt="Profile Image" class="img-rounded profile-image" src="~/Content/images/default.png" />
+        <div class="profile-name">
+            @User.Identity.GetUserName()
+        </div>
+        <div class="user-info-profileNav">
+            <p>Age: </p>
+            <p>Sex: </p>
+            <p>Relationship: </p>
+        </div>
+    </div>
+    <div class="profile-links">
+        <input type="button" value="Edit Profile" class="profile-buttons-edit" />
+    </div>
+    <div class="profile-links">
+        <input type="button" value="Photos" class="profile-buttons" />
+    </div>
+    <div class="profile-links">
+        <input type="button" value="Friends" class="profile-buttons" />
+    </div>
+    <div class="profile-links">
+        <input type="button" value="Interests" class="profile-buttons" />
+    </div>
+    <div class="profile-links">
+        <input type="button" value="Following" class="profile-buttons" />
+    </div>
+</div>

@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<SocialNet.ViewModels.UserStatus>
+@{
+    ViewBag.Title = "Profile";
+}
+
+<body>
+    @{Html.RenderPartial("LoginBar", "Shared");}
+    @{Html.RenderPartial("ProfileBar", "Home");}
+    <div class="Profile-wall">
+        <div class="wall-posts">
+            <div class="About-container">
+                <h2>About: </h2>
+                <div class="profile-about-text">
+                    <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."</p>
+                </div>
+            </div>
+            <div class="New-status">
+                @using (Html.BeginForm("Create", "UserStatus"))
+                {
+                    @Html.Action("Create", "UserStatus")
+                }
+            </div>
+            @foreach (var u in Model)
+            {
+                <div class="StatusForm">
+                    <p style="color: grey;">Name = @u.UserName | @u.StatusDate | ID = @u.UserStatusID</p>
+                    <p>@u.StatusBody</p>
+                </div>
+            }
+        </div>
+    </div>
+    @Html.Action("RightBar", "Home")
+</body>
