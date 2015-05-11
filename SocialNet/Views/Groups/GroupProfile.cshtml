@@ -8,7 +8,18 @@
     @{Html.RenderPartial("LoginBar", "Shared");}
     <div class="main-container">
         <div class="Group-photo-container">
-            <input type="image" src="~/Content/images/group-photo_resize.png" class="group-img" alt="The Groups Image"/>
+            <input type="image" src="~/Content/images/group-photo_resize.png" class="group-img" alt="The Groups Image" />
+        </div>
+        <div class="group-horizontal-bar">
+            <div style="padding: 0px 25px 0px 10px; text-align: center; display: inline-block;">
+                @*@Html.DisplayFor(itemModel => Model.GroupName)*@GroupName
+            </div>
+            <div style="padding: 0px 10px 0px 10px; text-align: center; display: inline-block;">
+                Members:
+            </div>
+            <div style="padding: 0px 10px 0px 10px; text-align: center; display: inline-block; text-align: right;">
+                @Html.ActionLink("AddMembers", "", "")
+            </div>
         </div>
         <div class="wall-posts">
             @Html.Action("Wall", "UserStatus")
