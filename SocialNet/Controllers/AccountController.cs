@@ -154,17 +154,9 @@ namespace SocialNet.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser 
-                { 
-                   
+                {                
                     UserName = model.Email, 
                     Email = model.Email,
-   
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    AboutUser = model.AboutUser,
-                    BirthDay = model.DateOfBirth,
-                    IsMale = model.Gender,
-                    IsSingle = model.IsSingle
                 };
 
                 var addUser = new User
@@ -176,8 +168,7 @@ namespace SocialNet.Controllers
                     AboutUser = model.AboutUser,
                     DateOfBirth = model.DateOfBirth,
                     IsMale = model.Gender,
-                    IsSingle = model.IsSingle
-                    
+                    IsSingle = model.IsSingle       
                 };
 
                 db.Users.Add(addUser);
@@ -223,17 +214,11 @@ namespace SocialNet.Controllers
             {
                 var user = new ApplicationUser
                 {
-
                     UserName = model.Email,
                     Email = model.Email,
-
-                    Name = model.Name,
-                    AboutUser = model.AboutUser,
-                    BirthDay = model.DateOfBirth,
-                    //PersonaType = model.PersonaType,
                 };
 
-                var addPersona = new User
+                var addPersona = new Persona
                 {
                     UserName = model.Email,
 
@@ -242,6 +227,9 @@ namespace SocialNet.Controllers
                     DateOfBirth = model.DateOfBirth
                     
                 };
+
+                db.Personas.Add(addPersona);
+                db.SaveChanges();
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

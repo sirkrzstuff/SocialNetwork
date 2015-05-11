@@ -164,6 +164,7 @@
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PersonasController.cs" />
     <Compile Include="Controllers\PhotosController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UserStatusController.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="ViewModels\FollowerList.cs" />
     <Compile Include="ViewModels\FriendList.cs" />
     <Compile Include="ViewModels\Groups.cs" />
+    <Compile Include="ViewModels\Persona.cs" />
     <Compile Include="ViewModels\Photo.cs" />
     <Compile Include="ViewModels\User.cs" />
     <Compile Include="ViewModels\UserStatus.cs" />
@@ -274,11 +276,6 @@
     <Content Include="Views\UserStatus\Details.cshtml" />
     <Content Include="Views\UserStatus\Edit.cshtml" />
     <Content Include="Views\UserStatus\Index.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Home\RightBar.cshtml" />
     <Content Include="Views\Shared\LoginBar.cshtml" />
     <Content Include="Views\Home\Profile.cshtml" />
@@ -286,6 +283,16 @@
     <Content Include="Views\Groups\GroupProfile.cshtml" />
     <Content Include="Views\UserStatus\Wall.cshtml" />
     <Content Include="Views\Home\Wall.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Personas\Create.cshtml" />
+    <Content Include="Views\Personas\Delete.cshtml" />
+    <Content Include="Views\Personas\Details.cshtml" />
+    <Content Include="Views\Personas\Edit.cshtml" />
+    <Content Include="Views\Personas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

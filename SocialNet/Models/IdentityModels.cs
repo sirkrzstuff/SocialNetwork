@@ -12,19 +12,19 @@ namespace SocialNet.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        //User
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public bool IsMale { get; set; }
-        public bool IsSingle { get; set; }
+       // //User
+       // public string FirstName { get; set; }
+       // public string LastName { get; set; }
+       // public bool IsMale { get; set; }
+       // public bool IsSingle { get; set; }
 
-        //Persona
-        public string Name { get; set; }
-       // public PersonaType PersonaType { get; set; }
+       // //Persona
+       // public string Name { get; set; }
+       //// public PersonaType PersonaType { get; set; }
         
-        //Both
-        public DateTime BirthDay { get; set; }
-        public string AboutUser { get; set; }
+       // //Both
+       // public DateTime BirthDay { get; set; }
+       // public string AboutUser { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -38,6 +38,7 @@ namespace SocialNet.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<User> Users { get; set; }
+        //public DbSet<Persona> Personas { get; set; }
         public DbSet<UserStatus> UserStatuses { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<FriendList> FriendLists { get; set; }
@@ -55,5 +56,7 @@ namespace SocialNet.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<SocialNet.ViewModels.Persona> Personas { get; set; }
     }
 }
