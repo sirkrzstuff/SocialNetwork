@@ -102,6 +102,7 @@ namespace SocialNet.Models
 
         [Display(Name = "About")]
         public string AboutUser { get; set; }
+
     }
 
     public class RegisterPersonaViewModel

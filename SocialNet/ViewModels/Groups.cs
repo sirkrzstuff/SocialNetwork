@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace SocialNet.ViewModels
 {
@@ -17,7 +18,10 @@ namespace SocialNet.ViewModels
 
         public Groups()
         {
-            GroupDateCreated = DateTime.Now;
+            //UserName = Membership.GetUserNameByEmail();
+
+            GroupDateCreated = DateTime.Now;          
         }
+
     }
 }

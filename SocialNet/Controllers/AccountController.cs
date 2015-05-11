@@ -18,6 +18,7 @@ namespace SocialNet.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -165,7 +166,25 @@ namespace SocialNet.Controllers
                     IsMale = model.Gender,
                     IsSingle = model.IsSingle
                 };
+
+                var addUser = new User
+                {
+                    UserName = model.Email,
+
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    AboutUser = model.AboutUser,
+                    DateOfBirth = model.DateOfBirth,
+                    IsMale = model.Gender,
+                    IsSingle = model.IsSingle
+                    
+                };
+
+                db.Users.Add(addUser);
+                db.SaveChanges();
+
                 var result = await UserManager.CreateAsync(user, model.Password);
+                //var addResult = Us(addUser, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -213,6 +232,17 @@ namespace SocialNet.Controllers
                     BirthDay = model.DateOfBirth,
                     //PersonaType = model.PersonaType,
                 };
+
+                var addPersona = new User
+                {
+                    UserName = model.Email,
+
+                    Name = model.Name,
+                    AboutUser = model.AboutUser,
+                    DateOfBirth = model.DateOfBirth
+                    
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

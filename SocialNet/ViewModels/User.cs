@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using SocialNet.Models;
-using SocialNet.Service;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
+using System.Threading.Tasks;
+using System.Security.Claims;
+using Microsoft.AspNet.Identity;
 
 namespace SocialNet.ViewModels
 {
@@ -17,7 +21,6 @@ namespace SocialNet.ViewModels
         //For Normal user and Persona
         public DateTime? DateOfBirth { get; set; }
         public string AboutUser { get; set; }
-        public PhotoAvatarAndBackground PhotoAvatarAndBackground { get; set;}
 
         public virtual ICollection<Groups> GroupList { get; set; }
         public virtual ICollection<Photo> PhotoList { get; set; }
@@ -33,9 +36,15 @@ namespace SocialNet.ViewModels
 
         //Persona
         public string Name { get; set; }
-        public PersonaType PersonaType { get; set; }
+        public Type? PersonaType { get; set; }
 
         public virtual ICollection<FollowerList> FollowerList { get; set; }
+
+        public enum Type
+        {
+            Artist, Buisness, Organization, Sport, Political, Other
+        }
+
 
     }
 }

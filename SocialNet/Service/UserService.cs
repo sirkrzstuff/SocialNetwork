@@ -24,5 +24,10 @@ namespace SocialNet.Service
 
             return model;
         }
+
+        public void SaveUser()
+        {
+
+        }
     }
 }
