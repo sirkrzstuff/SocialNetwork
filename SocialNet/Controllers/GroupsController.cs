@@ -124,5 +124,14 @@ namespace SocialNet.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult GroupProfile()
+        {
+            var model = (from data in db.UserStatuses
+                         orderby data.UserStatusID descending
+                         select data).ToList();
+            return View(model);
+        }
+
     }
 }

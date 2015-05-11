@@ -1,0 +1,4 @@
+﻿function refgroups()
+{
+    $(".groupsORonline").hide();
+}

@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<SocialNet.ViewModels.UserStatus>
+@{
+    ViewBag.Title = "Profile";
+}
+
+<body>
+    @{Html.RenderPartial("LoginBar", "Shared");}
+    <div class="main-container">
+        <div class="Group-photo-container">
+            <input type="image" src="~/Content/images/group-photo_resize.png" class="group-img" alt="The Groups Image"/>
+        </div>
+        <div class="wall-posts">
+            @Html.Action("Wall", "UserStatus")
+        </div>
+    </div>
+    @Html.Action("RightBar", "Home")
+</body>
+

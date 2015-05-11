@@ -1,5 +1,4 @@
-﻿@model IEnumerable<SocialNet.ViewModels.UserStatus>
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 
@@ -7,19 +6,7 @@
     @{Html.RenderPartial("LoginBar", "Shared");}
     <div class="main-container">
         <div class="wall-posts">
-            <div class="New-status">
-            @using (Html.BeginForm("Create", "UserStatus"))
-            {
-                @Html.Action("Create", "UserStatus")   
-            }
-            </div>
-            @foreach(var u in Model)
-            {
-                <div class="StatusForm">
-                    <p style="color: grey;">Name = @u.UserName | @u.StatusDate | ID = @u.UserStatusID</p>
-                    <p>@u.StatusBody</p>
-                </div>
-            }
+        @Html.Action("Wall", "UserStatus")
         </div>
     </div>
     @Html.Action("RightBar", "Home")

@@ -1,14 +1,21 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using Microsoft.AspNet.Identity;
+
 <div class="rightnav">
     <div class="rightnav-buttons">
         <input type="button" value="Wall Posts" class="Wall-btn" />
         <input type="button" value="Photos" class="Photos-btn" />
     </div>
     <div class="select-groupOronline">
-        <input type="button" value="Groups" class="gr-ol-btn" style="width: 75px;" />
+        <input type="button" value="Groups" class="gr-ol-btn" style="width: 75px;" onclick="refgroups()" />
         <input type="button" value="Who's Online" class="gr-ol-btn" />
     </div>
     <div class="groupsORonline">
-        <p>@Html.ActionLink(User.Identity.GetUserName(), "Profile", "Home")</p>
+        @Html.ActionLink(User.Identity.GetUserName(), "Profile", "Home")
+        <br />
+        @Html.ActionLink("My Group", "GroupProfile", "Groups")
+        <br />
+        Name = @User.Identity.Name
+        <br /><br />
+        UserID = @User.Identity.GetUserId()
     </div>
 </div>

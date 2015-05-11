@@ -37,8 +37,5 @@ namespace SocialNet.ViewModels
 
         public virtual ICollection<FollowerList> FollowerList { get; set; }
 
-        
-
-
     }
 }

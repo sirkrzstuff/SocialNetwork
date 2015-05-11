@@ -18,12 +18,14 @@ namespace SocialNet.Controllers
         [Authorize]
         public ActionResult Index()
         {
-           //Code for Status updates
+            //Code for Status updates
             StatusService service = new StatusService();
 
             var statuses = service.GetLatestForUser(this.User.Identity.Name);
 
-            var model = db.UserStatuses.ToList();
+            var model = (from r in db.UserStatuses
+                         orderby r.StatusDate descending
+                         select r).ToList();
 
             return View(model);
         }

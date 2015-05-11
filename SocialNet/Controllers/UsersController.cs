@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using SocialNet.Models;
 using SocialNet.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using SocialNet.Service;
 
 namespace SocialNet.Controllers
 {
@@ -18,7 +21,14 @@ namespace SocialNet.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            //var model = new UserService();
+            //var select = model.GetAllUsers();
+
+            var select = (from usr in db.Users
+                          orderby usr.UserName ascending
+                          select usr).ToList();
+
+            return View(select);
         }
 
         // GET: Users/Details/5
@@ -124,5 +134,6 @@ namespace SocialNet.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

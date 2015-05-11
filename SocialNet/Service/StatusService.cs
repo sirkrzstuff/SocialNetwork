@@ -10,9 +10,9 @@ namespace SocialNet.Service
     public class StatusService
     {
        
+        private ApplicationDbContext db = new ApplicationDbContext();
         public List<UserStatus> GetLatestForUser(string UserName)
         {
-            var db = new ApplicationDbContext();
 
             var friends = new List<string>();
 
@@ -21,6 +21,14 @@ namespace SocialNet.Service
                             select s).ToList();*/
 
             return new List<UserStatus>();
+        }
+
+        public IEnumerable<UserStatus> GetLatestStatuses()
+        {
+            var model = (from r in db.UserStatuses
+                         orderby r.StatusDate descending
+                         select r).ToList();
+            return model;
         }
     }
 }

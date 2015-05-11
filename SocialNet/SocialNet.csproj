@@ -177,6 +177,7 @@
     <Compile Include="Service\PersonaType.cs" />
     <Compile Include="Service\PhotoAvatarAndBackground.cs" />
     <Compile Include="Service\StatusService.cs" />
+    <Compile Include="Service\UserService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Comment.cs" />
     <Compile Include="ViewModels\FollowerList.cs" />
@@ -190,6 +191,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\default.png" />
+    <Content Include="Content\images\group-photo.png" />
+    <Content Include="Content\images\group-photo_resize.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -197,6 +200,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-migrate-1.2.1.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -205,6 +209,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\MyScript.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -277,6 +282,9 @@
     <Content Include="Views\Shared\LoginBar.cshtml" />
     <Content Include="Views\Home\Profile.cshtml" />
     <Content Include="Views\Home\ProfileBar.cshtml" />
+    <Content Include="Views\Groups\GroupProfile.cshtml" />
+    <Content Include="Views\UserStatus\Wall.cshtml" />
+    <Content Include="Views\Home\Wall.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
