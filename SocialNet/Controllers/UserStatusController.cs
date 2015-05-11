@@ -54,7 +54,7 @@ namespace SocialNet.Controllers
             {
                 db.UserStatuses.Add(userStatus);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(userStatus);
