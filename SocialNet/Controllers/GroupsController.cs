@@ -47,7 +47,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GroupID,GroupName,GroupDateCreated,UserName")] Groups groups)
+        public ActionResult Create([Bind(Include = "GroupID,CreatorId,GroupName,GroupDateCreated")] Groups groups)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GroupID,GroupName,GroupDateCreated,UserName")] Groups groups)
+        public ActionResult Edit([Bind(Include = "GroupID,CreatorId,GroupName,GroupDateCreated")] Groups groups)
         {
             if (ModelState.IsValid)
             {

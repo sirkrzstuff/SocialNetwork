@@ -18,10 +18,10 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FollowerName)
+                @Html.DisplayNameFor(model => model.PersonaName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                @Html.DisplayNameFor(model => model.FollowerName)
             </th>
             <th></th>
         </tr>
@@ -29,15 +29,15 @@
     @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.PersonaName)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.FollowerName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.FollowerID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.FollowerID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.FollowerID })
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
             </td>
         </tr>
     }

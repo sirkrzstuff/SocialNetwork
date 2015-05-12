@@ -7,7 +7,12 @@
         <h2>Users found</h2>
         foreach (var user in Model.Users)
         {
-            <div>@user.UserName</div>
+            <div>
+                <span>@Html.ActionLink(user.UserName, "Profile", "Home")</span>
+                <span style="padding: 50px"></span>                  
+                <span>@Html.ActionLink("Send friend request", "AddAsFriend", new { friend = user.UserName })</span>
+                @*<span>@Html.ActionLink("Add friend", "Create")</span>*@
+            </div>
         }
     }
     if (Model.Personas != null && Model.Personas.Any())

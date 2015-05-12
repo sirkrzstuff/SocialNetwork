@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using SocialNet.Models;
 using SocialNet.ViewModels;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Security;
 
 namespace SocialNet.Controllers
 {
@@ -48,7 +49,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserId,FriendId,FriendIsTopFriend")] FriendList friendList)
+        public ActionResult Create([Bind(Include = "Id,UserName,FriendName,FriendIsTopFriend")] FriendList friendList)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +81,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserId,FriendId,FriendIsTopFriend")] FriendList friendList)
+        public ActionResult Edit([Bind(Include = "Id,UserName,FriendName,FriendIsTopFriend")] FriendList friendList)
         {
             if (ModelState.IsValid)
             {
@@ -125,8 +126,7 @@ namespace SocialNet.Controllers
             }
             base.Dispose(disposing);
         }
-
-        public ActionResult Search()
+          public ActionResult Search()
         {
             return View();
         }
@@ -148,17 +148,39 @@ namespace SocialNet.Controllers
             var users = db.Users.Where(u => split.Contains(u.FirstName.ToLower()) || split.Contains(u.LastName.ToLower()));
             var personas = db.Personas.Where(u => split.Contains(u.Name.ToLower()));
             var results = new SearchResults { SearchString = searchString, Users = users.ToList(), Personas = personas.ToList() };
+
             return View(results);
         }
 
-        public JsonResult AddAsFriend([Required]User user)
+        public ActionResult AddAsFriend(string friend)
         {
-            var currentUser = db.Users.FirstOrDefault(u => u.UserName == this.User.Identity.Name);
-            if (currentUser == null) return Json(new { Success = false });
+            //var currentUser = db.Users.FirstOrDefault(u => u.UserName == this.User.Identity.Name);
+            //if (currentUser == null) return Json(new { Success = false });
+            var addFriend = new FriendList
+           {
+               UserName = this.User.Identity.Name,
+               FriendName = friend            
+           };
+  
+            if (ModelState.IsValid)
+            {
+                db.FriendLists.Add(addFriend);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-            currentUser.FriendList.Add(user);
-            return null;
+            return View("SearchResults");
         }
+
+        //public JsonResult AddAsFriend([Required]User user)
+        //{
+        //    var currentUser = db.Users.FirstOrDefault(u => u.UserName == this.User.Identity.Name);
+        //    if (currentUser == null) return Json(new { Success = false });
+
+        //    currentUser.FriendList.Add(user);
+        //    db.SaveChanges();
+        //    return null;
+        //}
 
     }
 }

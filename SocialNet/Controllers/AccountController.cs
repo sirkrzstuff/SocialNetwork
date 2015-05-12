@@ -171,8 +171,7 @@ namespace SocialNet.Controllers
                     IsSingle = model.IsSingle       
                 };
 
-                db.Users.Add(addUser);
-                db.SaveChanges();
+               
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 //var addResult = Us(addUser, model.Password);
@@ -185,6 +184,9 @@ namespace SocialNet.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    db.Users.Add(addUser);
+                    db.SaveChanges();
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -224,12 +226,8 @@ namespace SocialNet.Controllers
 
                     Name = model.Name,
                     AboutUser = model.AboutUser,
-                    DateOfBirth = model.DateOfBirth
-                    
-                };
-
-                db.Personas.Add(addPersona);
-                db.SaveChanges();
+                    DateOfBirth = model.DateOfBirth   
+                };       
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -241,6 +239,9 @@ namespace SocialNet.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    db.Personas.Add(addPersona);
+                    db.SaveChanges();
 
                     return RedirectToAction("Index", "Home");
                 }
