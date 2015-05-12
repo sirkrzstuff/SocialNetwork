@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<SocialNet.ViewModels.FriendList>
-
+@using Microsoft.AspNet.Identity;
 @{
     Layout = null;
 }
@@ -18,7 +18,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+               @User.Identity.Name
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FriendName)
@@ -34,12 +34,12 @@
             </td>
         </tr>*@
     @*@foreach (var item in Model.Where(i => i.modelItem => item.UserName == this.User.Identity.Name))*@
-    @foreach (var item in Model)
+    @foreach (var item in Model.Where(s => s.UserName == this.User.Identity.Name))
     {
         <tr>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.UserName)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.FriendName)
             </td>

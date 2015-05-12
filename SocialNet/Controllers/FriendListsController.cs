@@ -31,6 +31,7 @@ namespace SocialNet.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             FriendList friendList = db.FriendLists.Find(id);
+            var currentUser = this.User.Identity.Name;
             if (friendList == null)
             {
                 return HttpNotFound();
@@ -166,7 +167,20 @@ namespace SocialNet.Controllers
             {
                 db.FriendLists.Add(addFriend);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                var friendSwitch = new FriendList
+                {
+                    UserName = friend,
+                    FriendName = this.User.Identity.Name
+                };
+
+                if (ModelState.IsValid)
+                {
+                    db.FriendLists.Add(friendSwitch);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
             }
 
             return View("SearchResults");

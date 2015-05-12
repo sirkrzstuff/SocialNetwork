@@ -107,5 +107,4 @@ C:\Users\krz\Documents\SkolinnKK\Skóli\2.onn\VerklegtNam2\SocialNetwork\SocialN
 C:\Users\krz\Documents\SkolinnKK\Skóli\2.onn\VerklegtNam2\SocialNetwork\SocialNet\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\krz\Documents\SkolinnKK\Skóli\2.onn\VerklegtNam2\SocialNetwork\SocialNet\obj\Debug\SocialNet.dll
 C:\Users\krz\Documents\SkolinnKK\Skóli\2.onn\VerklegtNam2\SocialNetwork\SocialNet\obj\Debug\SocialNet.pdb
-C:\Users\krz\Documents\SkolinnKK\Skóli\2.onn\VerklegtNam2\SocialNetwork\SocialNet\bin\SocialNet.dll.CodeAnalysisLog.xml
-C:\Users\krz\Documents\SkolinnKK\Skóli\2.onn\VerklegtNam2\SocialNetwork\SocialNet\bin\SocialNet.dll.lastcodeanalysissucceeded
+C:\Users\krz\Documents\SkolinnKK\Skóli\2.onn\VerklegtNam2\SocialNetwork\SocialNet\obj\Debug\SocialNet.csprojResolveAssemblyReference.cache
