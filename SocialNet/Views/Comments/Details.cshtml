@@ -1,4 +1,4 @@
-﻿@model SocialNet.ViewModels.FriendList
+﻿@model SocialNet.ViewModels.Comment
 
 @{
     Layout = null;
@@ -13,31 +13,31 @@
 </head>
 <body>
     <div>
-        <h4>FriendList</h4>
+        <h4>Comment</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.UserId)
+                @Html.DisplayNameFor(model => model.UserStatusId)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.UserId)
+                @Html.DisplayFor(model => model.UserStatusId)
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.FriendId)
+                @Html.DisplayNameFor(model => model.CommentBody)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.FriendId)
+                @Html.DisplayFor(model => model.CommentBody)
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.FriendIsTopFriend)
+                @Html.DisplayNameFor(model => model.CommentDate)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.FriendIsTopFriend)
+                @Html.DisplayFor(model => model.CommentDate)
             </dd>
     
         </dl>

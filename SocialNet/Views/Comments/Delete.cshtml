@@ -1,4 +1,4 @@
-﻿@model SocialNet.ViewModels.FollowerList
+﻿@model SocialNet.ViewModels.Comment
 
 @{
     Layout = null;
@@ -14,23 +14,31 @@
 <body>
     <h3>Are you sure you want to delete this?</h3>
     <div>
-        <h4>FollowerList</h4>
+        <h4>Comment</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.FollowerName)
+                @Html.DisplayNameFor(model => model.UserStatusId)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.FollowerName)
+                @Html.DisplayFor(model => model.UserStatusId)
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.UserName)
+                @Html.DisplayNameFor(model => model.CommentBody)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.UserName)
+                @Html.DisplayFor(model => model.CommentBody)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CommentDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CommentDate)
             </dd>
     
         </dl>

@@ -9,11 +9,17 @@ namespace SocialNet.ViewModels
 {
     public class FriendList
     {
-        [Key]
-        public int FriendID { get; set; }
-        public string FriendName { get; set; }
-        public bool FriendIsTopFriend { get; set; }
+        
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int FriendId { get; set; }
 
-        public string UserName { get; set; }
+        public bool? FriendIsTopFriend { get; set; }        
+    }
+
+    public enum FriendStatus
+    {
+        Active,
+        Pending
     }
 }

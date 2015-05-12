@@ -66,6 +66,7 @@ artifacts/
 *.pidb
 *.svclog
 *.scc
+*.suo
 
 # Chutzpah Test files
 _Chutzpah*
@@ -202,9 +203,20 @@ FakesAssemblies/
 # möppur sem við viljum ekki
 SocialNet/bin/
 SocialNet/bin
+SocialNet/obj
 /SocialNet/bin
 /SocialNet/bin/*
 SocialNet/obj/
 SocialNet/obj/*
 /SocialNet/obj/
+/SocialNet/obj/*
+
+*SocialNet/bin/
+*SocialNet/bin
+*SocialNet/obj
+*/SocialNet/bin
+*/SocialNet/bin/*
+*SocialNet/obj/
+*SocialNet/obj/*
+*/SocialNet/obj/
 /SocialNet/obj/*

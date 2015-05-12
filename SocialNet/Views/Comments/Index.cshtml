@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SocialNet.ViewModels.FriendList>
+﻿@model IEnumerable<SocialNet.ViewModels.Comment>
 
 @{
     Layout = null;
@@ -18,13 +18,13 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UserId)
+                @Html.DisplayNameFor(model => model.UserStatusId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FriendId)
+                @Html.DisplayNameFor(model => model.CommentBody)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FriendIsTopFriend)
+                @Html.DisplayNameFor(model => model.CommentDate)
             </th>
             <th></th>
         </tr>
@@ -32,13 +32,13 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserId)
+                @Html.DisplayFor(modelItem => item.UserStatusId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FriendId)
+                @Html.DisplayFor(modelItem => item.CommentBody)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FriendIsTopFriend)
+                @Html.DisplayFor(modelItem => item.CommentDate)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

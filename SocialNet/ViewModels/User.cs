@@ -15,11 +15,14 @@ namespace SocialNet.ViewModels
 {
     public class User
     {
-        [Key]
-        public string UserName { get; set; }
 
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        [Required]   
         public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
+
         public bool IsMale { get; set; }
         public bool IsSingle { get; set; }
 
@@ -30,7 +33,7 @@ namespace SocialNet.ViewModels
         public virtual ICollection<Photo> PhotoList { get; set; }
         public virtual ICollection<UserStatus> UserStatusList { get; set; }
 
-        public virtual ICollection<FriendList> FriendList { get; set; }
+        public virtual ICollection<User> FriendList { get; set; }
        
 
 

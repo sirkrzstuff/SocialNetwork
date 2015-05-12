@@ -8,8 +8,8 @@ namespace SocialNet.ViewModels
 {
     public class Photo
     {
-        [Key]
-        public int PhotoID { get; set; }
+
+        public int Id { get; set; }
         public string PhotoName { get; set; }
         public DateTime? PhotoDate { get; set; }
         public int PhotoAlbum { get; set; }

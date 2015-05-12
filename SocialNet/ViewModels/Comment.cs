@@ -8,17 +8,14 @@ using System.Web;
 
 namespace SocialNet.ViewModels
 {
-    public class Comment : UserStatus
+    public class Comment
     {
-        public int CommentID { get; set; }
+        public int Id { get; set; }
+        public int UserStatusId { get; set; }
         public string CommentBody { get; set; }
         public DateTime? CommentDate { get; set; }
 
-        //[ForeignKey]
-        public string UserName { get; set; }
-
         public virtual ApplicationUser Author { get; set; }
-        public virtual IList<Comment> CommentList { get; set; }
 
         public Comment ()
         {

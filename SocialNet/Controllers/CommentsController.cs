@@ -11,107 +11,107 @@ using SocialNet.ViewModels;
 
 namespace SocialNet.Controllers
 {
-    public class GroupsController : Controller
+    public class CommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Groups
+        // GET: Comments
         public ActionResult Index()
         {
-            return View(db.GroupsList.ToList());
+            return View(db.Comments.ToList());
         }
 
-        // GET: Groups/Details/5
+        // GET: Comments/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Groups groups = db.GroupsList.Find(id);
-            if (groups == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(groups);
+            return View(comment);
         }
 
-        // GET: Groups/Create
+        // GET: Comments/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Groups/Create
+        // POST: Comments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GroupID,GroupName,GroupDateCreated,UserName")] Groups groups)
+        public ActionResult Create([Bind(Include = "Id,UserStatusId,CommentBody,CommentDate")] Comment comment)
         {
             if (ModelState.IsValid)
             {
-                db.GroupsList.Add(groups);
+                db.Comments.Add(comment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(groups);
+            return View(comment);
         }
 
-        // GET: Groups/Edit/5
+        // GET: Comments/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Groups groups = db.GroupsList.Find(id);
-            if (groups == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(groups);
+            return View(comment);
         }
 
-        // POST: Groups/Edit/5
+        // POST: Comments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GroupID,GroupName,GroupDateCreated,UserName")] Groups groups)
+        public ActionResult Edit([Bind(Include = "Id,UserStatusId,CommentBody,CommentDate")] Comment comment)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(groups).State = EntityState.Modified;
+                db.Entry(comment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(groups);
+            return View(comment);
         }
 
-        // GET: Groups/Delete/5
+        // GET: Comments/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Groups groups = db.GroupsList.Find(id);
-            if (groups == null)
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
             {
                 return HttpNotFound();
             }
-            return View(groups);
+            return View(comment);
         }
 
-        // POST: Groups/Delete/5
+        // POST: Comments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Groups groups = db.GroupsList.Find(id);
-            db.GroupsList.Remove(groups);
+            Comment comment = db.Comments.Find(id);
+            db.Comments.Remove(comment);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

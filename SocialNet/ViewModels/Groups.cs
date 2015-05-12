@@ -11,10 +11,9 @@ namespace SocialNet.ViewModels
     {
         [Key]
         public int GroupID { get; set; }
+        public string CreatorId { get; set; }
         public string GroupName { get; set; }
         public DateTime? GroupDateCreated { get; set; }
-
-        public string UserName { get; set; }
 
         public Groups()
         {

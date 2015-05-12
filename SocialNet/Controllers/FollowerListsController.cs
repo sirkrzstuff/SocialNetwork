@@ -47,7 +47,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FollowerID,FollowerName")] FollowerList followerList)
+        public ActionResult Create([Bind(Include = "FollowerID,FollowerName,UserName")] FollowerList followerList)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FollowerID,FollowerName")] FollowerList followerList)
+        public ActionResult Edit([Bind(Include = "FollowerID,FollowerName,UserName")] FollowerList followerList)
         {
             if (ModelState.IsValid)
             {

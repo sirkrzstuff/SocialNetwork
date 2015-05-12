@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using SocialNet.Models;
 using SocialNet.ViewModels;
-using SocialNet.Service;
 
 namespace SocialNet.Controllers
 {
@@ -48,7 +47,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserStatusID,StatusBody,StatusDate")] UserStatus userStatus)
+        public ActionResult Create([Bind(Include = "Id,StatusBody,StatusDate")] UserStatus userStatus)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +79,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserStatusID,StatusBody,StatusDate")] UserStatus userStatus)
+        public ActionResult Edit([Bind(Include = "Id,StatusBody,StatusDate")] UserStatus userStatus)
         {
             if (ModelState.IsValid)
             {
@@ -129,7 +128,7 @@ namespace SocialNet.Controllers
         public ActionResult Wall()
         {
             var model = (from data in db.UserStatuses
-                         orderby data.UserStatusID descending
+                         orderby data.Id descending
                          select data).ToList();
 
             return View(model);

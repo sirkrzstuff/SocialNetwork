@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SocialNet.Models;
 using SocialNet.ViewModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace SocialNet.Controllers
 {
@@ -47,7 +48,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FriendID,FriendName,FriendIsTopFriend")] FriendList friendList)
+        public ActionResult Create([Bind(Include = "Id,UserId,FriendId,FriendIsTopFriend")] FriendList friendList)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +80,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FriendID,FriendName,FriendIsTopFriend")] FriendList friendList)
+        public ActionResult Edit([Bind(Include = "Id,UserId,FriendId,FriendIsTopFriend")] FriendList friendList)
         {
             if (ModelState.IsValid)
             {
@@ -124,5 +125,40 @@ namespace SocialNet.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Search(SearchBar searchBar)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("SearchResults", new { searchString = searchBar.SearchString });
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult SearchResults(string searchString)
+        {
+            var split = searchString.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            var users = db.Users.Where(u => split.Contains(u.FirstName.ToLower()) || split.Contains(u.LastName.ToLower()));
+            var personas = db.Personas.Where(u => split.Contains(u.Name.ToLower()));
+            var results = new SearchResults { SearchString = searchString, Users = users.ToList(), Personas = personas.ToList() };
+            return View(results);
+        }
+
+        public JsonResult AddAsFriend([Required]User user)
+        {
+            var currentUser = db.Users.FirstOrDefault(u => u.UserName == this.User.Identity.Name);
+            if (currentUser == null) return Json(new { Success = false });
+
+            currentUser.FriendList.Add(user);
+            return null;
+        }
+
     }
 }

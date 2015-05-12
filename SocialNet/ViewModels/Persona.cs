@@ -10,10 +10,11 @@ namespace SocialNet.ViewModels
 {
     public class Persona
     {
-        [Key]
+        public int Id { get; set; }
         public string UserName { get; set; }
-
+        [Required]
         public string Name { get; set; }
+
         public DateTime? DateOfBirth { get; set; }
         public string AboutUser { get; set; }
         public Type? PersonaType { get; set; }
@@ -21,7 +22,7 @@ namespace SocialNet.ViewModels
         public virtual ICollection<Groups> GroupList { get; set; }
         public virtual ICollection<Photo> PhotoList { get; set; }
         public virtual ICollection<UserStatus> UserStatusList { get; set; }
-        public virtual ICollection<FollowerList> FollowerList { get; set; }
+        public virtual ICollection<User> FollowerList { get; set; }
 
         public enum Type
         {

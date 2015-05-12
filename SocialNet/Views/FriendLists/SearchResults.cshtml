@@ -1,0 +1,21 @@
+﻿@model SocialNet.ViewModels.SearchResults
+
+@using (Html.BeginForm())
+{
+    if (Model.Users != null && Model.Users.Any())
+    {
+        <h2>Users found</h2>
+        foreach (var user in Model.Users)
+        {
+            <div>@user.UserName</div>
+        }
+    }
+    if (Model.Personas != null && Model.Personas.Any())
+    {
+        <h2>Personas found</h2>
+        foreach (var persona in Model.Personas)
+        {
+            <div>@persona.UserName</div>
+        }
+    }
+}

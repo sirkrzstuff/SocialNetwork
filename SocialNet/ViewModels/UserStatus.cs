@@ -12,13 +12,9 @@ namespace SocialNet.ViewModels
 {
     public class UserStatus
     {
-        [Key]
-        public int UserStatusID { get; set; }
+        public int Id { get; set; }
         public string StatusBody { get; set; }
         public DateTime? StatusDate { get; set; }
-
-        //[ForeignKey]
-        public string UserName { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
         public virtual IList<Comment> Comments { get; set; }
