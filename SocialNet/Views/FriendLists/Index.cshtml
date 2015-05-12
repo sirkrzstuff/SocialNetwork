@@ -12,16 +12,16 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
+    @*<p>
         @Html.ActionLink("Create New", "Create")
-    </p>
+    </p>*@
     <table class="table">
         <tr>
-            <th>
+            @*<th>
                @User.Identity.Name
-            </th>
+            </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.FriendName)
+                @Html.DisplayName("Friend List")
             </th>
             @*<th>
                 @Html.DisplayNameFor(model => model.FriendIsTopFriend)
@@ -46,11 +46,11 @@
             @*<td>
                 @Html.DisplayFor(modelItem => item.FriendIsTopFriend)
             </td>*@
-            <td>
+            @*<td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id=item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>
+            </td>*@
         </tr>
     }
     

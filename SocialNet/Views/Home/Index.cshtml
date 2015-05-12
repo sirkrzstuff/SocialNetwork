@@ -9,5 +9,23 @@
         @Html.Action("Wall", "UserStatus")
         </div>
     </div>
-    @Html.Action("RightBar", "Home")
+    <div>
+        <div class="rightnav">
+            <div class="rightNavUpper">
+                <div class="rightnav-buttons">
+                    <input type="button" value="Wall Posts" class="Wall-btn" />
+                    <input type="button" value="Photos" class="Photos-btn" />
+                </div>
+                <div class="select-groupOronline">
+                    <input type="button" value="Who's Online" class="gr-ol-btn" />
+                    <input type="button" value="Groups" class="gr-ol-btn" style="width: 75px;" onclick="refgroups()" />                
+                </div>
+            </div>
+            <div class="rightNavLower">
+                <div>                 
+                    @Html.Action("Index", "FriendLists")
+                </div>
+            </div>
+        </div>
+    </div> 
 </body>
