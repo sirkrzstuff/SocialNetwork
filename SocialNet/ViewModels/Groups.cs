@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SocialNet.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,10 +15,12 @@ namespace SocialNet.ViewModels
         public string GroupName { get; set; }
         public DateTime? GroupDateCreated { get; set; }
 
+        public virtual ApplicationUser Author { get; set; }
+
         public Groups()
         {
             //UserName = Membership.GetUserNameByEmail();
-
+            CreatorName = Author.UserName;
             GroupDateCreated = DateTime.Now;          
         }
 

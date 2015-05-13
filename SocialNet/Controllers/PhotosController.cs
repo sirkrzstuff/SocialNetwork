@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using SocialNet.Models;
 using SocialNet.ViewModels;
+using System.IO;
+using System.Windows.Forms;
 
 namespace SocialNet.Controllers
 {
@@ -33,6 +35,7 @@ namespace SocialNet.Controllers
             {
                 return HttpNotFound();
             }
+            
             return View(photo);
         }
 
@@ -123,6 +126,46 @@ namespace SocialNet.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult AddSinglePhoto()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult AddSinglePhoto(HttpPostedFileBase file)
+        {
+
+            if (file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                file.SaveAs(path);
+            }
+
+            return RedirectToAction("AddSinglePhoto");
+        }
+
+        public ActionResult AddMultiplePhotos()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddMultiplePhotos(IEnumerable<HttpPostedFileBase> files)
+        {
+            foreach (var file in files)
+            {
+                if (file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                    file.SaveAs(path);
+                }
+            }
+            return RedirectToAction("AddMultiplePhotos");
         }
     }
 }
