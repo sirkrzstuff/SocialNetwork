@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNet.Identity;
+﻿@model SocialNet.ViewModels.ConnectionViewModel
+@using Microsoft.AspNet.Identity;
 
 <div class="rightnav">
     <div class="rightnav-buttons">
@@ -10,12 +11,13 @@
         <input type="button" value="Who's Online" class="gr-ol-btn" />
     </div>
     <div class="groupsORonline">
-        @Html.ActionLink(User.Identity.GetUserName(), "Profile", "Home")
-        <br />
-        @Html.ActionLink("My Group", "GroupProfile", "Groups")
-        <br />
-        Name = @User.Identity.Name
-        <br /><br />
-        UserID = @User.Identity.GetUserId()
+        @foreach (var usr in Model.cn_users)
+        {
+            @Html.ActionLink(@usr.FirstName + " " + @usr.LastName, "Profile", "Home")<br />
+        }
+        @*@foreach (var grp in Model.cn_groups)
+        {
+            @Html.ActionLink(@grp.GroupName, "GroupProfile", "Groups")
+        }*@
     </div>
-</div>
+</div>  

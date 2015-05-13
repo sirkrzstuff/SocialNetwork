@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SocialNet.Models;
+using SocialNet.Service;
 using SocialNet.ViewModels;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Security;
@@ -17,10 +18,27 @@ namespace SocialNet.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        //Connection for the viewmodels created
+        ConnectionViewModel model = new ConnectionViewModel();
+
+        //Service instances created
+        UserService user_service = new UserService();
+        StatusService status_service = new StatusService();
+        FriendListService friend_service = new FriendListService();
+        GroupService group_service = new GroupService();
+
         // GET: FriendLists
+        [Authorize]
         public ActionResult Index()
         {
-            return View(db.FriendLists.ToList());
+            //Instances filled with content
+            model.cn_users = user_service.GetAllUsers();
+            model.cn_userstatuses = status_service.GetLatestStatuses();
+            model.cn_friendlist = friend_service.GetAllFriends();
+            model.cn_groups = group_service.GetAllGroups();
+
+            //return the model with initialized content to be used in the views.
+            return View(model);
         }
 
         // GET: FriendLists/Details/5
@@ -49,16 +67,23 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserName,FriendName,FriendIsTopFriend")] FriendList friendList)
+        public ActionResult Create(FormCollection formData)
         {
             if (ModelState.IsValid)
             {
-                db.FriendLists.Add(friendList);
+                model.cn_friendlist_form = new FriendList
+                {
+                    Id = Convert.ToInt32(formData["cn_friendlist_form.Id"]),
+                    FriendName = formData["cn_friendlist_form.FriendName"],
+                    UserName = formData["cn_friendlist_form.UserName"]
+                };
+
+                db.FriendLists.Add(model.cn_friendlist_form);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(friendList);
+            return View(formData);
         }
 
         // GET: FriendLists/Edit/5

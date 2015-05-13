@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity;
-@model IEnumerable<SocialNet.ViewModels.UserStatus>
+@model SocialNet.ViewModels.ConnectionViewModel
 @{
     ViewBag.Title = "Profile";
 }
@@ -12,7 +12,7 @@
         </div>
         <div class="group-horizontal-bar">
             <div style="padding: 0px 25px 0px 10px; text-align: center; display: inline-block;">
-                @*@Html.DisplayFor(itemModel => Model.GroupName)*@GroupName
+                @*@Html.DisplayFor(itemModel => Model.GroupName)*@
             </div>
             <div style="padding: 0px 10px 0px 10px; text-align: center; display: inline-block;">
                 Members:
@@ -22,9 +22,9 @@
             </div>
         </div>
         <div class="wall-posts">
-            @Html.Action("Wall", "UserStatus")
+            @Html.Partial("Wall", Model)
         </div>
     </div>
-    @Html.Action("RightBar", "Home")
+    @Html.Partial("RightBar", Model)
 </body>
 

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SocialNet.Models;
 using SocialNet.ViewModels;
+using SocialNet.Service;
 
 namespace SocialNet.Controllers
 {
@@ -15,10 +16,28 @@ namespace SocialNet.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        //Connection for the viewmodels created
+        ConnectionViewModel model = new ConnectionViewModel();
+
+        //Service instances created
+        UserService user_service = new UserService();
+        StatusService status_service = new StatusService();
+        FriendListService friend_service = new FriendListService();
+        GroupService group_service = new GroupService();
+
         // GET: Groups
+        [Authorize]
         public ActionResult Index()
         {
-            return View(db.GroupsList.ToList());
+
+            //Instances filled with content
+            model.cn_users = user_service.GetAllUsers();
+            model.cn_userstatuses = status_service.GetLatestStatuses();
+            model.cn_friendlist = friend_service.GetAllFriends();
+            model.cn_groups = group_service.GetAllGroups();
+
+            //return the model with initialized content to be used in the views.
+            return View(model);
         }
 
         // GET: Groups/Details/5
@@ -47,16 +66,23 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GroupID,CreatorId,GroupName,GroupDateCreated")] Groups groups)
+        public ActionResult Create(FormCollection form)
         {
             if (ModelState.IsValid)
             {
-                db.GroupsList.Add(groups);
+                model.cn_groups_form = new Groups
+                {
+                    Id = Convert.ToInt32(form["cn_groups_form.Id"]),
+                    CreatorName = form["cn_groups_form.CreatorName"],
+                    GroupName = form["cn_groups_form.GroupName"]
+                };
+
+                db.GroupsList.Add(model.cn_groups_form);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(groups);
+            return View(form);
         }
 
         // GET: Groups/Edit/5
@@ -123,6 +149,18 @@ namespace SocialNet.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult GroupProfile()
+        {
+            //Instances filled with content
+            model.cn_users = user_service.GetAllUsers();
+            model.cn_userstatuses = status_service.GetLatestStatuses();
+            model.cn_friendlist = friend_service.GetAllFriends();
+            model.cn_groups = group_service.GetAllGroups();
+
+            //return the model with initialized content to be used in the views.
+            return View(model);
         }
     }
 }

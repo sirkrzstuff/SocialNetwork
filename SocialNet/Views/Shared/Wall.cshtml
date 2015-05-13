@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNet.Identity;
+@model SocialNet.ViewModels.ConnectionViewModel
+
+<div class="New-status">
+    @using (Html.BeginForm("Create", "UserStatus"))
+    {
+        @Html.Action("Create", "UserStatus")
+    }
+</div>
+@foreach (var u in Model.cn_userstatuses)
+{
+
+    <div class="StatusForm">
+        <p style="color: grey;">Name = @u.Author | @u.StatusDate | ID = @u.Id</p>
+        <p>@u.StatusBody</p>
+    </div>
+}
+

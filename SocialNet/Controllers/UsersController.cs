@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SocialNet.Models;
 using SocialNet.ViewModels;
+using SocialNet.Service;
 
 namespace SocialNet.Controllers
 {
@@ -15,10 +16,27 @@ namespace SocialNet.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        //Connection for the viewmodels created
+        ConnectionViewModel model = new ConnectionViewModel();
+
+        //Service instances created
+        UserService user_service = new UserService();
+        StatusService status_service = new StatusService();
+        FriendListService friend_service = new FriendListService();
+        GroupService group_service = new GroupService();
+
         // GET: Users
+        [Authorize]
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            //Instances filled with content
+            model.cn_users = user_service.GetAllUsers();
+            model.cn_userstatuses = status_service.GetLatestStatuses();
+            model.cn_friendlist = friend_service.GetAllFriends();
+            model.cn_groups = group_service.GetAllGroups();
+
+            //return the model with initialized content to be used in the views.
+            return View(model);
         }
 
         // GET: Users/Details/5

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SocialNet.ViewModels.Groups>
+﻿@model SocialNet.ViewModels.ConnectionViewModel
 
 @{
     Layout = null;
@@ -18,36 +18,37 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CreatorId)
+                @Html.DisplayNameFor(model => model.cn_groups_form.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GroupName)
+                @Html.DisplayNameFor(model => model.cn_groups_form.GroupName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GroupDateCreated)
+                @Html.DisplayNameFor(model => model.cn_groups_form.GroupDateCreated)
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatorId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GroupName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GroupDateCreated)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.GroupID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.GroupID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.GroupID })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model.cn_groups)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GroupName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GroupDateCreated)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
     </table>
 </body>
 </html>

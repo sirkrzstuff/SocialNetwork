@@ -1,5 +1,5 @@
-﻿@model IEnumerable<SocialNet.ViewModels.FriendList>
-@using Microsoft.AspNet.Identity;
+﻿@model SocialNet.ViewModels.ConnectionViewModel
+
 @{
     Layout = null;
 }
@@ -12,48 +12,48 @@
     <title>Index</title>
 </head>
 <body>
-    @*<p>
+    <p>
         @Html.ActionLink("Create New", "Create")
-    </p>*@
+    </p>
     <table class="table">
         <tr>
-            @*<th>
-               @User.Identity.Name
-            </th>*@
             <th>
-                @Html.DisplayName("Friend List")
+                @Html.DisplayNameFor(model => model.cn_friendlist_form.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cn_friendlist_form.FriendName)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.FriendIsTopFriend)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.FriendIsTopFriend)
+                </th>*@
             <th></th>
         </tr>
         @*<tr>
-            <td>
-                @Html.DisplayNameFor(model => model.UserName)
-            </td>
-        </tr>*@
-    @*@foreach (var item in Model.Where(i => i.modelItem => item.UserName == this.User.Identity.Name))*@
-    @foreach (var item in Model.Where(s => s.UserName == this.User.Identity.Name))
-    {
-        <tr>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.FriendName)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.FriendIsTopFriend)
-            </td>*@
-            @*<td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>*@
-        </tr>
-    }
-    
+                <td>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </td>
+            </tr>*@
+        @*@foreach (var item in Model.Where(i => i.modelItem => item.UserName == this.User.Identity.Name))*@
+        @foreach (var item in Model.cn_friendlist)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FriendName)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.FriendIsTopFriend)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
     </table>
 </body>
 </html>

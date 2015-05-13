@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SocialNet.ViewModels.ConnectionViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -6,26 +7,8 @@
     @{Html.RenderPartial("LoginBar", "Shared");}
     <div class="main-container">
         <div class="wall-posts">
-        @Html.Action("Wall", "UserStatus")
+            @Html.Partial("Wall", Model)
         </div>
     </div>
-    <div>
-        <div class="rightnav">
-            <div class="rightNavUpper">
-                <div class="rightnav-buttons">
-                    <input type="button" value="Wall Posts" class="Wall-btn" />
-                    <input type="button" value="Photos" class="Photos-btn" />
-                </div>
-                <div class="select-groupOronline">
-                    <input type="button" value="Who's Online" class="gr-ol-btn" />
-                    <input type="button" value="Groups" class="gr-ol-btn" style="width: 75px;" onclick="refgroups()" />                
-                </div>
-            </div>
-            <div class="rightNavLower">
-                <div>                 
-                    @Html.Action("Index", "FriendLists")
-                </div>
-            </div>
-        </div>
-    </div> 
+    @Html.Partial("RightBar", Model)
 </body>
