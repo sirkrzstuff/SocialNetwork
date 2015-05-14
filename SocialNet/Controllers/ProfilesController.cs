@@ -8,125 +8,110 @@ using System.Web;
 using System.Web.Mvc;
 using SocialNet.Models;
 using SocialNet.ViewModels;
-using SocialNet.Service;
 
 namespace SocialNet.Controllers
 {
-    public class CommentsController : Controller
+    public class ProfilesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        ConnectionViewModel model = new ConnectionViewModel();
-        CommentService comment_Service = new CommentService();
-       
-
-        // GET: Comments
+        // GET: Profiles
         public ActionResult Index()
         {
-            model.ConnectionComments = comment_Service.GetAllComments();
-            return View(db.Comments.ToList());
+            return View(db.Profiles.ToList());
         }
 
-        // GET: Comments/Details/5
+        // GET: Profiles/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
+            Profile profile = db.Profiles.Find(id);
+            if (profile == null)
             {
                 return HttpNotFound();
             }
-            return View(comment);
+            return View(profile);
         }
 
-        // GET: Comments/Create
+        // GET: Profiles/Create
         public ActionResult Create()
         {
-           
-
-            //Comment comment = db.Comments.Find(UserStatusId);
-           
-            //    return HttpNotFound();
-            //}
             return View();
         }
 
-        // POST: Comments/Create
+        // POST: Profiles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int id, [Bind(Include = "Id,UserStatusId,CommentBody,CommentDate,Author")] Comment comment)
+        public ActionResult Create([Bind(Include = "Id,UserName")] Profile profile)
         {
             if (ModelState.IsValid)
             {
-                comment.Author = this.User.Identity.Name;
-                comment.UserStatusId = id;
-                db.Comments.Add(comment);
+                db.Profiles.Add(profile);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index");
             }
 
-            return View(comment);
+            return View(profile);
         }
 
-        // GET: Comments/Edit/5
+        // GET: Profiles/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
+            Profile profile = db.Profiles.Find(id);
+            if (profile == null)
             {
                 return HttpNotFound();
             }
-            return View(comment);
+            return View(profile);
         }
 
-        // POST: Comments/Edit/5
+        // POST: Profiles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserStatusId,CommentBody,CommentDate,Author")] Comment comment)
+        public ActionResult Edit([Bind(Include = "Id,UserName")] Profile profile)
         {
             if (ModelState.IsValid)
             {
-                comment.Author = this.User.Identity.Name;
-                db.Entry(comment).State = EntityState.Modified;
+                db.Entry(profile).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(comment);
+            return View(profile);
         }
 
-        // GET: Comments/Delete/5
+        // GET: Profiles/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
+            Profile profile = db.Profiles.Find(id);
+            if (profile == null)
             {
                 return HttpNotFound();
             }
-            return View(comment);
+            return View(profile);
         }
 
-        // POST: Comments/Delete/5
+        // POST: Profiles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Comment comment = db.Comments.Find(id);
-            db.Comments.Remove(comment);
+            Profile profile = db.Profiles.Find(id);
+            db.Profiles.Remove(profile);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -26,6 +26,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.MessageBody)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeSent)
+            </th>
             <th></th>
         </tr>
     
@@ -39,6 +42,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MessageBody)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeSent)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

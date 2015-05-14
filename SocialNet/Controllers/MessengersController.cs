@@ -47,7 +47,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserOne,UserTwo,MessageBody")] Messenger messenger)
+        public ActionResult Create([Bind(Include = "Id,UserOne,UserTwo,MessageBody,TimeSent")] Messenger messenger)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserOne,UserTwo,MessageBody")] Messenger messenger)
+        public ActionResult Edit([Bind(Include = "Id,UserOne,UserTwo,MessageBody,TimeSent")] Messenger messenger)
         {
             if (ModelState.IsValid)
             {
