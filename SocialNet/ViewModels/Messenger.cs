@@ -11,5 +11,11 @@ namespace SocialNet.ViewModels
         public string UserOne { get; set; }
         public string UserTwo { get; set; }
         public string MessageBody { get; set; }
+        public DateTime? TimeSent { get; set; }
+
+        public Messenger()
+        {
+            TimeSent = DateTime.Now;
+        }
     }
 }

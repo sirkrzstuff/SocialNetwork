@@ -10,6 +10,7 @@ namespace SocialNet.ViewModels
         public IEnumerable<User> ConnectionUsers { get; set; }
         public User ConnectionUserForm { get; set; }
         public IEnumerable<UserStatus> ConnectionUserStatuses { get; set; }
+        public Comment ConnectionCommentsForm { get; set; }
         public IEnumerable<Comment> ConnectionComments { get; set; }
         public SearchBar ConnectionSearchbar { get; set; }
         public SearchResults ConnectionSearchresults { get; set; }

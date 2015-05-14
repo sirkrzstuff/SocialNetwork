@@ -108,7 +108,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GroupID,CreatorId,GroupName,GroupDateCreated")] Groups groups)
+        public ActionResult Edit([Bind(Include = "GroupID,CreatorId,GroupName,GroupDateCreated,GroupPhoto")] Groups groups)
         {
             if (ModelState.IsValid)
             {

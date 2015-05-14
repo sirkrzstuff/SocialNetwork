@@ -14,6 +14,7 @@ namespace SocialNet.ViewModels
         public string CreatorName { get; set; }
         public string GroupName { get; set; }
         public DateTime? GroupDateCreated { get; set; }
+        public string GroupPhoto { get; set; }
 
         //public virtual ApplicationUser Author { get; set; }
 
