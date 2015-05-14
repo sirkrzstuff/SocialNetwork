@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SocialNet.Models;
 using SocialNet.ViewModels;
+using SocialNet.Service;
 
 namespace SocialNet.Controllers
 {
@@ -15,9 +16,27 @@ namespace SocialNet.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        //Connection for the viewmodels created
+        ConnectionViewModel model = new ConnectionViewModel();
+
+        //Service instances created
+        UserService user_Service = new UserService();
+        StatusService status_Service = new StatusService();
+        FriendListService friend_Service = new FriendListService();
+        GroupService group_Service = new GroupService();
+        CommentService comment_Service = new CommentService();
+
         // GET: UserStatus
         public ActionResult Index()
         {
+            //Instances filled with content
+            model.ConnectionUsers = user_Service.GetAllUsers();
+            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_Service.GetAllGroups();
+            model.ConnectionComments = comment_Service.GetAllComments();
+
+
             return View(db.UserStatuses.ToList());
         }
 
@@ -51,6 +70,13 @@ namespace SocialNet.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Creates a new comment section for the status
+                //Comment newComment = new Comment();
+                //newComment.UserStatusId = userStatus.Id;
+                //db.Comments.Add(newComment);
+                //db.SaveChanges();
+
+                userStatus.Author = this.User.Identity.Name;
                 db.UserStatuses.Add(userStatus);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
@@ -132,6 +158,25 @@ namespace SocialNet.Controllers
                          select data).ToList();
 
             return View(model);
-        }
+        }     
+
+        //public ActionResult AddComment(int userStatusId, string commentBody)
+        //{
+            
+        //    var newComment = new Comment
+        //    {
+        //        Author = this.User.Identity.Name,
+        //        UserStatusId = 0,
+        //        CommentBody = commentBody
+        //    };
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Comments.Add(newComment);
+        //        db.SaveChanges(); 
+        //    }
+
+        //    return RedirectToAction("Index", "Home");
+        //}
     }
 }

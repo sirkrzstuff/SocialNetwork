@@ -11,110 +11,107 @@ using SocialNet.ViewModels;
 
 namespace SocialNet.Controllers
 {
-    public class CommentsController : Controller
+    public class MessengersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Comments
+        // GET: Messengers
         public ActionResult Index()
         {
-            return View(db.Comments.ToList());
+            return View(db.Messengers.ToList());
         }
 
-        // GET: Comments/Details/5
+        // GET: Messengers/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
+            Messenger messenger = db.Messengers.Find(id);
+            if (messenger == null)
             {
                 return HttpNotFound();
             }
-            return View(comment);
+            return View(messenger);
         }
 
-        // GET: Comments/Create
-        public ActionResult Create(int? id)
+        // GET: Messengers/Create
+        public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Comments/Create
+        // POST: Messengers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserStatusId,CommentBody,CommentDate,Author")] Comment comment)
+        public ActionResult Create([Bind(Include = "Id,UserOne,UserTwo,MessageBody")] Messenger messenger)
         {
             if (ModelState.IsValid)
             {
-                comment.Author = this.User.Identity.Name;
-                //comment.UserStatusId = 1;
-                db.Comments.Add(comment);
+                db.Messengers.Add(messenger);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index");
             }
 
-            return View(comment);
+            return View(messenger);
         }
 
-        // GET: Comments/Edit/5
+        // GET: Messengers/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
+            Messenger messenger = db.Messengers.Find(id);
+            if (messenger == null)
             {
                 return HttpNotFound();
             }
-            return View(comment);
+            return View(messenger);
         }
 
-        // POST: Comments/Edit/5
+        // POST: Messengers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserStatusId,CommentBody,CommentDate,Author")] Comment comment)
+        public ActionResult Edit([Bind(Include = "Id,UserOne,UserTwo,MessageBody")] Messenger messenger)
         {
             if (ModelState.IsValid)
             {
-                comment.Author = this.User.Identity.Name;
-                db.Entry(comment).State = EntityState.Modified;
+                db.Entry(messenger).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(comment);
+            return View(messenger);
         }
 
-        // GET: Comments/Delete/5
+        // GET: Messengers/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
+            Messenger messenger = db.Messengers.Find(id);
+            if (messenger == null)
             {
                 return HttpNotFound();
             }
-            return View(comment);
+            return View(messenger);
         }
 
-        // POST: Comments/Delete/5
+        // POST: Messengers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Comment comment = db.Comments.Find(id);
-            db.Comments.Remove(comment);
+            Messenger messenger = db.Messengers.Find(id);
+            db.Messengers.Remove(messenger);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

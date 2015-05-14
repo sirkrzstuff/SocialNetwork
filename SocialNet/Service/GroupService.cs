@@ -10,6 +10,7 @@ namespace SocialNet.Service
     public class GroupService
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db;
         public IEnumerable<Groups> GetAllGroups()
         {
             var model = (from groups in db.GroupsList

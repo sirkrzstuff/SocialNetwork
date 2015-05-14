@@ -18,10 +18,10 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.cn_friendlist_form.UserName)
+                @Html.DisplayNameFor(model => model.ConnectionFriendlistForm.UserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.cn_friendlist_form.FriendName)
+                @Html.DisplayNameFor(model => model.ConnectionFriendlistForm.FriendName)
             </th>
             @*<th>
                     @Html.DisplayNameFor(model => model.FriendIsTopFriend)
@@ -34,7 +34,7 @@
                 </td>
             </tr>*@
         @*@foreach (var item in Model.Where(i => i.modelItem => item.UserName == this.User.Identity.Name))*@
-        @foreach (var item in Model.cn_friendlist)
+        @foreach (var item in Model.ConnectionFriendlist)
         {
             <tr>
                 <td>

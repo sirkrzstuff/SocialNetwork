@@ -2,22 +2,27 @@
 @using Microsoft.AspNet.Identity;
 
 <div class="rightnav">
-    <div class="rightnav-buttons">
-        <input type="button" value="Wall Posts" class="Wall-btn" />
-        <input type="button" value="Photos" class="Photos-btn" />
+    <ul class="rightnav-buttons">
+        <li>@Html.ActionLink("Wall", "Index", "Home")</li>
+        <li>@Html.ActionLink("Photos", "Index", "Photos")</li>
+    </ul>
+    @*<div class="rightnav">
+        <div class="rightnav-buttons">
+            <input type="button" value="Wall Posts" class="Wall-btn" />
+            <input type="button" value="Photos" class="Photos-btn" />
+        </div>*@
+        <div class="select-groupOronline">
+            <input type="button" value="Groups" class="gr-ol-btn" style="width: 75px;" onclick="refgroups()" />
+            <input type="button" value="Who's Online" class="gr-ol-btn" />
+        </div>
+        <div class="groupsORonline">
+            @foreach (var usr in Model.ConnectionUsers)
+            {
+                @Html.ActionLink(@usr.FirstName + " " + @usr.LastName, "Profile", "Home")<br />
+            }
+            @*@foreach (var grp in Model.ConnectionGroups)
+                {
+                    @Html.ActionLink(@grp.GroupName, "GroupProfile", "Groups")
+                }*@
+        </div>
     </div>
-    <div class="select-groupOronline">
-        <input type="button" value="Groups" class="gr-ol-btn" style="width: 75px;" onclick="refgroups()" />
-        <input type="button" value="Who's Online" class="gr-ol-btn" />
-    </div>
-    <div class="groupsORonline">
-        @foreach (var usr in Model.cn_users)
-        {
-            @Html.ActionLink(@usr.FirstName + " " + @usr.LastName, "Profile", "Home")<br />
-        }
-        @*@foreach (var grp in Model.cn_groups)
-        {
-            @Html.ActionLink(@grp.GroupName, "GroupProfile", "Groups")
-        }*@
-    </div>
-</div>  

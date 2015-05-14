@@ -1,4 +1,4 @@
-﻿@model SocialNet.ViewModels.Comment
+﻿@model SocialNet.ViewModels.Messenger
 
 @{
     Layout = null;
@@ -13,33 +13,33 @@
 </head>
 <body>
     <div>
-        <h4>Comment</h4>
+        <h4>Messenger</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.UserStatusId)
+                @Html.DisplayNameFor(model => model.UserOne)
             </dt>
-
+    
             <dd>
-                @Html.DisplayFor(model => model.UserStatusId)
+                @Html.DisplayFor(model => model.UserOne)
             </dd>
-
+    
             <dt>
-                @Html.DisplayNameFor(model => model.CommentBody)
+                @Html.DisplayNameFor(model => model.UserTwo)
             </dt>
-
+    
             <dd>
-                @Html.DisplayFor(model => model.CommentBody)
+                @Html.DisplayFor(model => model.UserTwo)
             </dd>
-
+    
             <dt>
-                @Html.DisplayNameFor(model => model.CommentDate)
+                @Html.DisplayNameFor(model => model.MessageBody)
             </dt>
-
+    
             <dd>
-                @Html.DisplayFor(model => model.CommentDate)
+                @Html.DisplayFor(model => model.MessageBody)
             </dd>
-
+    
         </dl>
     </div>
     <p>

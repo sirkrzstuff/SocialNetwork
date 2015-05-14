@@ -23,7 +23,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Where(photo => photo.UserName == this.User.Identity.Name))
+{
     <tr>
         <td>
             <img src="@Url.Content(item.PhotoName)" />

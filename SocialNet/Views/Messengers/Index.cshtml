@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SocialNet.ViewModels.UserStatus>
+﻿@model IEnumerable<SocialNet.ViewModels.Messenger>
 
 @{
     Layout = null;
@@ -18,13 +18,13 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.StatusBody)
+                @Html.DisplayNameFor(model => model.UserOne)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StatusDate)
+                @Html.DisplayNameFor(model => model.UserTwo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author)
+                @Html.DisplayNameFor(model => model.MessageBody)
             </th>
             <th></th>
         </tr>
@@ -32,13 +32,13 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.StatusBody)
+                @Html.DisplayFor(modelItem => item.UserOne)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StatusDate)
+                @Html.DisplayFor(modelItem => item.UserTwo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Author)
+                @Html.DisplayFor(modelItem => item.MessageBody)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

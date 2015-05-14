@@ -11,7 +11,7 @@ namespace SocialNet.Service
     public class UserService
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        //private ApplicationDbContext db;
         //public IEnumerable<User> GetAllUsers()
         //{
         //    var model = new List<User>();

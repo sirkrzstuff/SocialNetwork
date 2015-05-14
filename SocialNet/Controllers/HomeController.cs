@@ -20,19 +20,21 @@ namespace SocialNet.Controllers
         ConnectionViewModel model = new ConnectionViewModel();
 
         //Service instances created
-        UserService user_service = new UserService();
-        StatusService status_service = new StatusService();
-        FriendListService friend_service = new FriendListService();
-        GroupService group_service = new GroupService();
+        UserService user_Service = new UserService();
+        StatusService status_Service = new StatusService();
+        FriendListService friend_Service = new FriendListService();
+        GroupService group_Service = new GroupService();
+        CommentService comment_Service = new CommentService();
 
         [Authorize]
         public ActionResult Index()
         {
             //Instances filled with content
-            model.cn_users = user_service.GetAllUsers();
-            model.cn_userstatuses = status_service.GetLatestStatuses();
-            model.cn_friendlist = friend_service.GetAllFriends();
-            model.cn_groups = group_service.GetAllGroups();
+            model.ConnectionUsers = user_Service.GetAllUsers();
+            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_Service.GetAllGroups();
+            model.ConnectionComments = comment_Service.GetAllComments();
 
             //return the model with initialized content to be used in the views.
             return View(model);
@@ -58,10 +60,10 @@ namespace SocialNet.Controllers
         public ActionResult Profile()
         {
             //Instances filled with content
-            model.cn_users = user_service.GetAllUsers();
-            model.cn_userstatuses = status_service.GetLatestStatuses();
-            model.cn_friendlist = friend_service.GetAllFriends();
-            model.cn_groups = group_service.GetAllGroups();
+            model.ConnectionUsers = user_Service.GetAllUsers();
+            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_Service.GetAllGroups();
 
             //return the model with initialized content to be used in the views.
             return View(model);

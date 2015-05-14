@@ -5,10 +5,15 @@
 
 <body>
     @{Html.RenderPartial("LoginBar", "Shared");}
+    @*<div>
+        @Html.Partial("ProfileBar", Model)
+    </div>*@
     <div class="main-container">
         <div class="wall-posts">
             @Html.Partial("Wall", Model)
         </div>
     </div>
+    <div>
     @Html.Partial("RightBar", Model)
+    </div>
 </body>

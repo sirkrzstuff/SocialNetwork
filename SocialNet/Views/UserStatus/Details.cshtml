@@ -1,34 +1,50 @@
 ﻿@model SocialNet.ViewModels.UserStatus
 
 @{
-    ViewBag.Title = "Details";
+    Layout = null;
 }
 
-<h2>Details</h2>
+<!DOCTYPE html>
 
-<div>
-    <h4>UserStatus</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.StatusBody)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StatusBody)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StatusDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StatusDate)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Wall")
-</p>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>UserStatus</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.StatusBody)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StatusBody)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.StatusDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.StatusDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Author)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Author)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

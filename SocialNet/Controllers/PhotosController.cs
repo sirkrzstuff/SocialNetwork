@@ -54,6 +54,7 @@ namespace SocialNet.Controllers
         {
             if (ModelState.IsValid)
             {
+                photo.UserName = this.User.Identity.Name;
                 db.Photos.Add(photo);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -24,16 +24,18 @@ namespace SocialNet.Controllers
         StatusService status_service = new StatusService();
         FriendListService friend_service = new FriendListService();
         GroupService group_service = new GroupService();
+        CommentService comment_service = new CommentService();
 
         // GET: Users
         [Authorize]
         public ActionResult Index()
         {
             //Instances filled with content
-            model.cn_users = user_service.GetAllUsers();
-            model.cn_userstatuses = status_service.GetLatestStatuses();
-            model.cn_friendlist = friend_service.GetAllFriends();
-            model.cn_groups = group_service.GetAllGroups();
+            model.ConnectionUsers = user_service.GetAllUsers();
+            model.ConnectionUserStatuses = status_service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_service.GetAllGroups();
+            model.ConnectionComments = comment_service.GetAllComments();
 
             //return the model with initialized content to be used in the views.
             return View(model);

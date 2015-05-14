@@ -15,9 +15,7 @@ namespace SocialNet.ViewModels
         public int Id { get; set; }
         public string StatusBody { get; set; }
         public DateTime? StatusDate { get; set; }
-
-        public virtual ApplicationUser Author { get; set; }
-        public virtual IList<Comment> Comments { get; set; }
+        public string Author { get; set; }
 
         public UserStatus ()
         {

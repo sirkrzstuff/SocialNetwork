@@ -11,6 +11,7 @@ namespace SocialNet.Service
     {
        
         private ApplicationDbContext db = new ApplicationDbContext();
+
         public List<UserStatus> GetLatestForUser(string UserName)
         {
 
