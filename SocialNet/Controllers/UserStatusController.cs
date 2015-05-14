@@ -66,7 +66,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,StatusBody,StatusDate")] UserStatus userStatus)
+        public ActionResult Create([Bind(Include = "ID,StatusBody,StatusDate")] UserStatus userStatus)
         {
             if (ModelState.IsValid)
             {
@@ -75,7 +75,6 @@ namespace SocialNet.Controllers
                 //newComment.UserStatusId = userStatus.Id;
                 //db.Comments.Add(newComment);
                 //db.SaveChanges();
-                //List<Comment> Comments = new List<Comment>();
 
                 userStatus.Author = this.User.Identity.Name;
                 db.UserStatuses.Add(userStatus);
@@ -106,7 +105,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,StatusBody,StatusDate")] UserStatus userStatus)
+        public ActionResult Edit([Bind(Include = "ID,StatusBody,StatusDate")] UserStatus userStatus)
         {
             if (ModelState.IsValid)
             {
@@ -155,7 +154,7 @@ namespace SocialNet.Controllers
         public ActionResult Wall()
         {
             var model = (from data in db.UserStatuses
-                         orderby data.Id descending
+                         orderby data.ID descending
                          select data).ToList();
 
             return View(model);

@@ -11,13 +11,13 @@
 {
 
     <div class="StatusForm">
-        <p style="color: grey;">@userStatus.Author | @userStatus.StatusDate | @userStatus.Id</p>
+        <p style="color: grey;">@userStatus.Author | @userStatus.StatusDate | @userStatus.ID</p>
         <p>@userStatus.StatusBody</p>
         <div>
             @if (Model.ConnectionComments != null)
             {
                 //foreach (var c in Model.cn_comments.Where(s => s.UserStatusId == u.Id))
-                foreach (var comment in Model.ConnectionComments.Where(status => status.UserStatusId == userStatus.Id))
+                foreach (var comment in Model.ConnectionComments.Where(status => status.UserStatusID == userStatus.ID))
                 {
                     <div class="CommentForm">
                         @*<p style="color: grey;">@c.Author | @c.CommentDate | @c.Id</p>*@
@@ -27,15 +27,17 @@
             }
         </div>
         <div>
-            @using (Html.BeginForm("Create", "Comments"))
+            @if (userStatus.ID != null)
             {
-                if (userStatus.Id != null)
+                using (Html.BeginForm("Create", "Comments"))
                 {
-                    @Html.Action("Create", "Comments", new { UserStatus = userStatus.Id })
+                    //Html.RenderAction("Create", "Comment", new { articleID = Model.ID });
+                    @Html.Action("Create", "Comments", new { UserStatusId = userStatus.ID })
+                    
                 }
             }
         </div>
-          
+       
     </div>
 }
 

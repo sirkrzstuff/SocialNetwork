@@ -15,16 +15,16 @@ namespace SocialNet.Controllers
     public class CommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
         ConnectionViewModel model = new ConnectionViewModel();
         CommentService comment_Service = new CommentService();
-       
 
         // GET: Comments
         public ActionResult Index()
         {
             model.ConnectionComments = comment_Service.GetAllComments();
-            return View(db.Comments.ToList());
+            var comments = db.Comments.Include(c => c.UserStatus);
+
+            return View(comments.ToList());
         }
 
         // GET: Comments/Details/5
@@ -43,24 +43,15 @@ namespace SocialNet.Controllers
         }
 
         // GET: Comments/Create
-        public ActionResult Create(int id)
+        public ActionResult Create(int UserStatusID)
         {
-            var newComment = new Comment
-            {
-                UserStatusId = id,
-                Author = this.User.Identity.Name
-            };
-            
-            //Comment comment = db.Comments.Find(UserStatusId);
-           
-            //    return HttpNotFound();
-            //}
-            if (newComment == null)
-            {
-                return View();
-            }
-           
-                return View(newComment);       
+            ViewBag.UserStatusID = new SelectList(db.UserStatuses, "ID", "ID");
+            var newComment = new Comment();
+            newComment.UserStatusID = UserStatusID;
+            newComment.Author = this.User.Identity.Name;
+
+            return View(newComment);    
+            //return View();
         }
 
         // POST: Comments/Create
@@ -68,17 +59,16 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserStatusID,CommentBody,CommentDate,Author")] Comment comment)
+        public ActionResult Create(Comment comment)
         {
             if (ModelState.IsValid)
             {
-                //comment.Author = this.User.Identity.Name;
-                //comment.UserStatusId = id;
                 db.Comments.Add(comment);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
 
+            ViewBag.UserStatusID = new SelectList(db.UserStatuses, "ID", "ID", comment.UserStatusID);
             return View(comment);
         }
 
@@ -94,6 +84,7 @@ namespace SocialNet.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.UserStatusID = new SelectList(db.UserStatuses, "ID", "ID", comment.UserStatusID);
             return View(comment);
         }
 
@@ -102,15 +93,15 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserStatusId,CommentBody,CommentDate,Author")] Comment comment)
+        public ActionResult Edit([Bind(Include = "CommentID,UserStatusID,CommentBody,CommentDate,Author")] Comment comment)
         {
             if (ModelState.IsValid)
             {
-                comment.Author = this.User.Identity.Name;
                 db.Entry(comment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.UserStatusID = new SelectList(db.UserStatuses, "ID", "ID", comment.UserStatusID);
             return View(comment);
         }
 
