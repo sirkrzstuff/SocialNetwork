@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SocialNet.Models;
 using SocialNet.ViewModels;
+using System.Web.Security;
+using System.Collections.Generic;
 
 namespace SocialNet.Controllers
 {
@@ -74,22 +76,45 @@ namespace SocialNet.Controllers
             {
                 return View(model);
             }
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            else
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+            
+                FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
+                if (HttpRuntime.Cache["LoggedInUsers"] != null) //if the list exists, add this user to it
+                {
+                    //get the list of logged in users from the cache
+                    List<string> loggedInUsers = (List<string>)HttpRuntime.Cache["LoggedInUsers"];
+                    //add this user to the list
+                    loggedInUsers.Add(model.Email);
+                    //add the list back into the cache
+                    HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                }
+                else //the list does not exist so create it
+                {
+                    //create a new list
+                    List<string> loggedInUsers = new List<string>();
+                    //add this user to the list
+                    loggedInUsers.Add(model.Email);
+                    //add the list into the cache
+                    HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                }
+
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, change to shouldLockout: true
+                var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+                switch (result)
+                {
+                    case SignInStatus.Success:
+                        return RedirectToLocal(returnUrl);
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.RequiresVerification:
+                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError("", "Invalid login attempt.");
+                        return View(model);
+                }
             }
         }
 
@@ -476,6 +501,18 @@ namespace SocialNet.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            string username = User.Identity.Name; //get the users username who is logged in
+            if (HttpRuntime.Cache["LoggedInUsers"] != null)//check if the list has been created
+            {
+                //the list is not null so we retrieve it from the cache
+                List<string> loggedInUsers = (List<string>)HttpRuntime.Cache["LoggedInUsers"];
+                if (loggedInUsers.Contains(username))//if the user is in the list
+                {
+                    //then remove them
+                    loggedInUsers.Remove(username);
+                }
+                // else do nothing
+            }
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }

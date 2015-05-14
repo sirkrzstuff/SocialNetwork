@@ -155,7 +155,11 @@ namespace SocialNet.Controllers
         }
           public ActionResult Search()
         {
-            return View();
+            model.ConnectionUsers = user_Service.GetAllUsers();
+            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_Service.GetAllGroups();
+            return View(model);
         }
 
         [HttpPost]
@@ -210,6 +214,30 @@ namespace SocialNet.Controllers
             }
 
             return View("SearchResults");
+        }
+
+        public ActionResult MyGroups()
+        {
+            //Instances filled with content
+            model.ConnectionUsers = user_Service.GetAllUsers();
+            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_Service.GetAllGroups();
+
+            //return the model with initialized content to be used in the views.
+            return View(model);
+        }
+
+        public ActionResult UsersOnline()
+        {
+            //Instances filled with content
+            model.ConnectionUsers = user_Service.GetAllUsers();
+            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_Service.GetAllGroups();
+
+            //return the model with initialized content to be used in the views.
+            return View(model);
         }
 
         //public JsonResult AddAsFriend([Required]User user)

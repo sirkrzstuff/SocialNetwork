@@ -1,11 +1,13 @@
-﻿@model SocialNet.ViewModels.SearchResults
-
+﻿@model SocialNet.ViewModels.ConnectionViewModel
+@{
+    
+}
 @using (Html.BeginForm())
 {
-    if (Model.Users != null && Model.Users.Any())
+    if (Model.ConnectionSearchresults.Users != null && Model.Users.Any())
     {
         <h2>Users found</h2>
-        foreach (var user in Model.Users)
+        foreach (var user in Model.ConnectionSearchresults.Users)
         {
             <div>
                 <span>@Html.ActionLink(user.UserName, "Profile", "Home")</span>
@@ -15,10 +17,10 @@
             </div>
         }
     }
-    if (Model.Personas != null && Model.Personas.Any())
+    if (Model.ConnectionSearchresults.Personas != null && Model.ConnectionSearchresults.Personas.Any())
     {
         <h2>Personas found</h2>
-        foreach (var persona in Model.Personas)
+        foreach (var persona in Model.ConnectionSearchresults.Personas)
         {
             <div>@persona.UserName</div>
         }

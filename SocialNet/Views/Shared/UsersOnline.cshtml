@@ -1,0 +1,30 @@
+﻿@using SocialNet.Service;
+
+<div>
+    <div class="grps-block">Friends online</div>
+    <div class="crtGrp-block">@Html.ActionLink("Find friends", "Search", "FriendLists")</div>
+</div>
+@if (HttpRuntime.Cache["LoggedInUsers"] != null)
+{
+    List<string> LoggedOnUsers = (List<string>)HttpRuntime.Cache["LoggedInUsers"];
+    if (LoggedOnUsers.Count > 0)
+    {
+        UserService user_Service = new UserService();
+        FriendListService friend_Service = new FriendListService();
+        var get_Friends = friend_Service.GetAllFriends(User.Identity.Name);
+        //var current_User = user_Service.GetUserByEmail(User.Identity.Name);
+
+        foreach (string user in LoggedOnUsers)
+        {
+            var the_User = user_Service.GetUserByEmail(@Html.Encode(user));
+
+            foreach (var user2 in get_Friends)
+            {
+                if (user == user2.FriendName)
+                {
+                    <div class="online_name">@Html.ActionLink(the_User.FirstName + " " + the_User.LastName, "Profile", new { id = the_User.Id })</div>
+                }
+            }
+        }
+    }
+}

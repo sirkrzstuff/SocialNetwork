@@ -9,6 +9,7 @@ namespace SocialNet.ViewModels
     {
         public IEnumerable<User> ConnectionUsers { get; set; }
         public User ConnectionUserForm { get; set; }
+        public User ConnectionUsersByID { get; set; }
         public IEnumerable<UserStatus> ConnectionUserStatuses { get; set; }
         public Comment ConnectionCommentsForm { get; set; }
         public IEnumerable<Comment> ConnectionComments { get; set; }
@@ -18,6 +19,5 @@ namespace SocialNet.ViewModels
         public FriendList ConnectionFriendlistForm { get; set; }
         public IEnumerable<Groups> ConnectionGroups { get; set; }
         public Groups ConnectionGroupsForm { get; set; }
-        public Groups ConnectionGroupsById { get; set; }
     }
 }

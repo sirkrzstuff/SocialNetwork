@@ -96,5 +96,6 @@ namespace SocialNet.Controllers
         {
             return View();
         }
+
     }
 }

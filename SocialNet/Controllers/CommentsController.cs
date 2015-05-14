@@ -43,7 +43,7 @@ namespace SocialNet.Controllers
         }
 
         // GET: Comments/Create
-        public ActionResult Create(int id)
+        public ActionResult Create(int? id)
         {
             var newComment = new Comment
             {

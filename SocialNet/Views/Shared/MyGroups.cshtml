@@ -1,0 +1,10 @@
+﻿@model SocialNet.ViewModels.ConnectionViewModel
+
+<div>
+    <div class="grps-block">Groups</div>
+    <div class="crtGrp-block">@Html.ActionLink("Create a group", "Create", "Groups")</div>
+</div>
+@foreach (var grp in Model.ConnectionGroups)
+{
+    @Html.ActionLink(@grp.GroupName, "../Groups/GroupProfile", new { id = grp.Id })<br />
+}

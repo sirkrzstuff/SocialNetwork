@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity;
+@using SocialNet.Service;
 @model SocialNet.ViewModels.ConnectionViewModel
 @{
     ViewBag.Title = "Profile";
@@ -12,7 +13,11 @@
             <div class="About-container">
                 <h2>About: </h2>
                 <div class="profile-about-text">
-                    <p>@Html.DisplayFor(itemmodel => Model.ConnectionUserForm.AboutUser)</p>
+                    @{
+                        UserService service = new UserService();
+                        var about = service.GetUserById(1);
+                    }
+                    <p>@about.AboutUser</p>
                 </div>
             </div>
             @Html.Partial("Wall", Model)
