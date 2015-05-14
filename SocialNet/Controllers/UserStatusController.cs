@@ -75,7 +75,7 @@ namespace SocialNet.Controllers
                 //newComment.UserStatusId = userStatus.Id;
                 //db.Comments.Add(newComment);
                 //db.SaveChanges();
-                List<Comment> Comments = new List<Comment>();
+                //List<Comment> Comments = new List<Comment>();
 
                 userStatus.Author = this.User.Identity.Name;
                 db.UserStatuses.Add(userStatus);

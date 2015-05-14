@@ -11,7 +11,7 @@ namespace SocialNet.ViewModels
     public class Comment
     {
         public int Id { get; set; }
-        public int UserStatusId { get; set; }
+        public int? UserStatusId { get; set; }
         public string CommentBody { get; set; }
         public DateTime? CommentDate { get; set; }
         public string Author { get; set; }

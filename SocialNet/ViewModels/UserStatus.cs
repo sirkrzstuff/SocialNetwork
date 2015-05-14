@@ -17,7 +17,6 @@ namespace SocialNet.ViewModels
         public DateTime? StatusDate { get; set; }
         public string Author { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
         public UserStatus ()
         {
             StatusDate = DateTime.Now;
