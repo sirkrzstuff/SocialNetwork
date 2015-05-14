@@ -399,6 +399,11 @@ body > #container {
     height: 50px;
 }
 
+.online_name {
+    padding: 5px 5px 5px 10px;
+    color: #428bca;
+}
+
 /* Kóði fyrir SocialWeb endar hér!*/
 
 article,

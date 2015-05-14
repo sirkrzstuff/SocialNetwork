@@ -31,7 +31,6 @@
             {
                 using (Html.BeginForm("Create", "Comments"))
                 {
-                    //Html.RenderAction("Create", "Comment", new { articleID = Model.ID });
                     @Html.Action("Create", "Comments", new { UserStatusId = userStatus.ID })
                     
                 }

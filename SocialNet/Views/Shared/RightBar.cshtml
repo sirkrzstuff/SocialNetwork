@@ -4,30 +4,32 @@
 
 <div class="rightnav">
     <div class="rightnav-buttons">
-        <button class="Wall-btn" ><a href="Home/Index">Wall Posts</a></button>
+        <button class="Wall-btn"><a href="Home/Index">Wall Posts</a></button>
         <button class="Photos-btn"><a href="../Photos/Index">Photos</a></button>
     </div>
     <div class="select-groupOronline">
-        <input type="button" value="Groups" class="gr-ol-btn" style="width: 75px;" onclick="refgroups()" />
-        <input type="button" value="Who's Online" class="gr-ol-btn" />
+        <input type="button" value="Groups" class="gr-ol-btn" style="width: 75px;" id="groups" onclick="func2()" />
+        <input type="button" value="Who's Online" class="gr-ol-btn" id="online" onclick='func1()' />
     </div>
     <div class="groupsORonline">
-        <div>
-            <div class="grps-block">Groups</div>
-            <div class="crtGrp-block">@Html.ActionLink("Create a group","Create", "Groups")</div>
+        <div id="grp-onl">
+            @{Html.RenderPartial("UsersOnline", Model);}
         </div>
-        @foreach (var usr in Model.ConnectionFriendlist)
-        {
-            if(usr.UserName == this.User.Identity.Name)
-            {
-                @Html.ActionLink(@usr.FriendName, "../Home/Profile", new { id = usr.Id })<br />
-            }
-        }
-        <hr />
-        @foreach (var grp in Model.ConnectionGroups)
-        {
-            @Html.ActionLink(@grp.GroupName, "../Groups/GroupProfile" , new { id = grp.Id })<br />
-        }
     </div>
+    
 </div>
+
+<div hidden="hidden">
+    <div id="grps">@{Html.RenderPartial("MyGroups", Model);}</div>
+    <div id="onl">@{Html.RenderPartial("UsersOnline", Model);}</div>
+</div>
+<script>
+    function func1() {
+        document.getElementById("grp-onl").innerHTML = document.getElementById("onl").innerHTML;
+    }
+
+    function func2() {
+        document.getElementById("grp-onl").innerHTML = document.getElementById("grps").innerHTML;
+    }
+</script>
 
