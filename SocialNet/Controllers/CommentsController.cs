@@ -43,15 +43,19 @@ namespace SocialNet.Controllers
         }
 
         // GET: Comments/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-           
-
+            var newComment = new Comment
+            {
+                //UserStatusId = id,
+                Author = this.User.Identity.Name
+            };
+            
             //Comment comment = db.Comments.Find(UserStatusId);
            
             //    return HttpNotFound();
             //}
-            return View();
+            return View(newComment);
         }
 
         // POST: Comments/Create
@@ -59,12 +63,12 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int id, [Bind(Include = "Id,UserStatusId,CommentBody,CommentDate,Author")] Comment comment)
+        public ActionResult Create([Bind(Include = "Id,CommentBody,CommentDate")] Comment comment)
         {
             if (ModelState.IsValid)
             {
-                comment.Author = this.User.Identity.Name;
-                comment.UserStatusId = id;
+                //comment.Author = this.User.Identity.Name;
+                //comment.UserStatusId = id;
                 db.Comments.Add(comment);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");

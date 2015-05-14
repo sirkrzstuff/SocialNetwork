@@ -60,7 +60,12 @@ namespace SocialNet.Controllers
         // GET: Groups/Create
         public ActionResult Create()
         {
-            return View();
+            model.ConnectionUsers = user_Service.GetAllUsers();
+            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_Service.GetAllGroups();
+            model.ConnectionComments = comment_Service.GetAllComments();
+            return View(model);
         }
 
         // POST: Groups/Create
@@ -77,7 +82,8 @@ namespace SocialNet.Controllers
                     Id = Convert.ToInt32(form["ConnectionGroupsForm.Id"]),
                     //CreatorName = form["ConnectionGroupsForm.CreatorName"],
                     CreatorName = this.User.Identity.Name,
-                    GroupName = form["ConnectionGroupsForm.GroupName"]
+                    GroupName = form["ConnectionGroupsForm.GroupName"],
+                    GroupPhoto = form["ConnectionGroupsForm.GroupPhoto"]
                 };
 
                 db.GroupsList.Add(model.ConnectionGroupsForm);
@@ -173,6 +179,17 @@ namespace SocialNet.Controllers
                 return HttpNotFound();
             }
             return View("GroupProfile", model);
+        }
+
+        public ActionResult RightBar()
+        {
+            model.ConnectionUsers = user_Service.GetAllUsers();
+            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_Service.GetAllGroups();
+            model.ConnectionComments = comment_Service.GetAllComments();
+
+            return View(model);
         }
     }
 }

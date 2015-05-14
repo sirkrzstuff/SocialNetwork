@@ -58,7 +58,7 @@ namespace SocialNet.Controllers
         }
 
         [Authorize]
-        public ActionResult Profile()
+        public ActionResult Profile(int? id)
         {
             //Instances filled with content
             model.ConnectionUsers = user_Service.GetAllUsers();
@@ -66,8 +66,16 @@ namespace SocialNet.Controllers
             model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
             model.ConnectionGroups = group_Service.GetAllGroups();
 
-            //return the model with initialized content to be used in the views.
-            return View(model);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Profile profiles = db.Profiles.Find(id);
+            if (profiles == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Profile", model);
         }
 
         [Authorize]

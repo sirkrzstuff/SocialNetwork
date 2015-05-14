@@ -168,9 +168,13 @@ namespace SocialNet.Controllers
                     AboutUser = model.AboutUser,
                     DateOfBirth = model.DateOfBirth,
                     IsMale = model.Gender,
-                    IsSingle = model.IsSingle       
+                    IsSingle = model.IsSingle,
                 };
 
+                var createProfileForNewUser = new Profile
+                {
+                    UserName = model.Email
+                };
                
 
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -186,6 +190,7 @@ namespace SocialNet.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     db.Users.Add(addUser);
+                    db.Profiles.Add(createProfileForNewUser);
                     db.SaveChanges();
 
                     return RedirectToAction("Index", "Home");
