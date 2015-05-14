@@ -58,5 +58,6 @@ namespace SocialNet.Models
         }
 
         public System.Data.Entity.DbSet<SocialNet.ViewModels.Persona> Personas { get; set; }
+        public System.Data.Entity.DbSet<SocialNet.ViewModels.Messenger> Messengers { get; set; }
     }
 }

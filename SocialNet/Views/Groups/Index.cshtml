@@ -18,18 +18,18 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.cn_groups_form.Id)
+                @Html.DisplayNameFor(model => model.ConnectionGroupsForm.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.cn_groups_form.GroupName)
+                @Html.DisplayNameFor(model => model.ConnectionGroupsForm.GroupName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.cn_groups_form.GroupDateCreated)
+                @Html.DisplayNameFor(model => model.ConnectionGroupsForm.GroupDateCreated)
             </th>
             <th></th>
         </tr>
 
-        @foreach (var item in Model.cn_groups)
+        @foreach (var item in Model.ConnectionGroups)
         {
             <tr>
                 <td>
@@ -42,6 +42,7 @@
                     @Html.DisplayFor(modelItem => item.GroupDateCreated)
                 </td>
                 <td>
+                    @Html.ActionLink("Profile", "GroupProfile", new { id = item.Id }) |
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })

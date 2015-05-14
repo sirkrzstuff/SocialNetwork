@@ -20,9 +20,10 @@
             {
                 @Html.ActionLink(@usr.FirstName + " " + @usr.LastName, "Profile", "Home")<br />
             }
-            @*@foreach (var grp in Model.ConnectionGroups)
-                {
-                    @Html.ActionLink(@grp.GroupName, "GroupProfile", "Groups")
-                }*@
+            <hr />
+            @foreach (var grp in Model.ConnectionGroups)
+            {
+                @Html.ActionLink(@grp.GroupName, "GroupProfile", new { id = grp.Id })<br />
+            }
         </div>
     </div>

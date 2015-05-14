@@ -154,16 +154,25 @@ namespace SocialNet.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult GroupProfile()
+        public ActionResult GroupProfile(int? id)
         {
-            //Instances filled with content
             model.ConnectionUsers = user_Service.GetAllUsers();
             model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
             model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
             model.ConnectionGroups = group_Service.GetAllGroups();
+            model.ConnectionComments = comment_Service.GetAllComments();
 
-            //return the model with initialized content to be used in the views.
-            return View(model);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Groups groups = db.GroupsList.Find(id);
+            model.ConnectionGroupsForm = groups;
+            if (groups == null)
+            {
+                return HttpNotFound();
+            }
+            return View("GroupProfile", model);
         }
     }
 }

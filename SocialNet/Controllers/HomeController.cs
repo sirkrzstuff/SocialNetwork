@@ -9,6 +9,7 @@ using SocialNet.Service;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using System.Web.UI.WebControls;
+using System.Net;
 
 namespace SocialNet.Controllers
 {
@@ -72,7 +73,14 @@ namespace SocialNet.Controllers
         [Authorize]
         public ActionResult RightBar()
         {
-            return View();
+            //Instances filled with content
+            model.ConnectionUsers = user_Service.GetAllUsers();
+            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_Service.GetAllGroups();
+
+            //return the model with initialized content to be used in the views.
+            return View(model);
         }
 
         [Authorize]
@@ -80,6 +88,5 @@ namespace SocialNet.Controllers
         {
             return View();
         }
-
     }
 }
