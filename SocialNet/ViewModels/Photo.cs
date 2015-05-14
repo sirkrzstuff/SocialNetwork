@@ -11,8 +11,8 @@ namespace SocialNet.ViewModels
     {
 
         public int Id { get; set; }
-        public string PhotoName { get; set; }
-        //public string PhotoUrl { get; set; }
+        public string PhotoCaption { get; set; }
+        public string PhotoUrl { get; set; }
         public string UserName { get; set; }
         public DateTime? PhotoDate { get; set; }
         public int PhotoAlbum { get; set; }

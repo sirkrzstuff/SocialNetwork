@@ -8,8 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using SocialNet.Models;
 using SocialNet.ViewModels;
-using System.IO;
-using System.Windows.Forms;
 
 namespace SocialNet.Controllers
 {
@@ -35,7 +33,6 @@ namespace SocialNet.Controllers
             {
                 return HttpNotFound();
             }
-            
             return View(photo);
         }
 
@@ -50,7 +47,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PhotoID,PhotoName,PhotoDate,PhotoAlbum")] Photo photo)
+        public ActionResult Create([Bind(Include = "Id,PhotoCaption,PhotoUrl,UserName,PhotoDate,PhotoAlbum")] Photo photo)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +80,7 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PhotoID,PhotoName,PhotoDate,PhotoAlbum")] Photo photo)
+        public ActionResult Edit([Bind(Include = "Id,PhotoCaption,PhotoUrl,UserName,PhotoDate,PhotoAlbum")] Photo photo)
         {
             if (ModelState.IsValid)
             {
@@ -127,46 +124,6 @@ namespace SocialNet.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        public ActionResult AddSinglePhoto()
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        public ActionResult AddSinglePhoto(HttpPostedFileBase file)
-        {
-
-            if (file.ContentLength > 0)
-            {
-                var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
-                file.SaveAs(path);
-            }
-
-            return RedirectToAction("AddSinglePhoto");
-        }
-
-        public ActionResult AddMultiplePhotos()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddMultiplePhotos(IEnumerable<HttpPostedFileBase> files)
-        {
-            foreach (var file in files)
-            {
-                if (file.ContentLength > 0)
-                {
-                    var fileName = Path.GetFileName(file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
-                    file.SaveAs(path);
-                }
-            }
-            return RedirectToAction("AddMultiplePhotos");
         }
     }
 }

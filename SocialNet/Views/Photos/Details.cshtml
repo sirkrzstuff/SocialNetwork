@@ -1,42 +1,66 @@
 ﻿@model SocialNet.ViewModels.Photo
 
 @{
-    ViewBag.Title = "Details";
+    Layout = null;
 }
 
-<h2>Details</h2>
+<!DOCTYPE html>
 
-<div>
-    <h4>Photo</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PhotoName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhotoName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhotoDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhotoDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhotoAlbum)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhotoAlbum)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Photo</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PhotoCaption)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PhotoCaption)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PhotoUrl)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PhotoUrl)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PhotoDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PhotoDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PhotoAlbum)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PhotoAlbum)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
