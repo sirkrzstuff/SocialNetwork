@@ -36,7 +36,6 @@ namespace SocialNet.Controllers
             model.ConnectionGroups = group_Service.GetAllGroups();
             model.ConnectionComments = comment_Service.GetAllComments();
 
-
             return View(db.UserStatuses.ToList());
         }
 

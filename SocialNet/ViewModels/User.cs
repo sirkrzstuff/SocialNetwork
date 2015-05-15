@@ -31,12 +31,12 @@ namespace SocialNet.ViewModels
 
         public virtual ICollection<Groups> GroupList { get; set; }
         public virtual ICollection<Photo> PhotoList { get; set; }
-        public virtual ICollection<UserStatus> UserStatusList { get; set; }
+        public virtual ICollection<UserStatus> UserStatusList{ get; set; }
         public virtual ICollection<User> FriendList { get; set; }
 
         public ICollection<Messenger> Messengers { get; set; }
+        public HashSet<string> ConnectionIds { get; set; }
        
-
-
     }
+
 }

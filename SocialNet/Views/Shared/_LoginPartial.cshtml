@@ -10,7 +10,7 @@
     UserService user_service = new UserService();
     var modelUser = user_service.GetUserByEmail(User.Identity.Name);
     string gender = "";
-    if(modelUser.IsMale == true)
+    if (modelUser.IsMale == true && modelUser.IsMale != null)
     {
         gender = "Mr. ";
     }

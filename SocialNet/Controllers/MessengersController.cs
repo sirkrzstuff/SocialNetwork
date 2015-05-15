@@ -39,6 +39,7 @@ namespace SocialNet.Controllers
         // GET: Messengers/Create
         public ActionResult Create()
         {
+            ViewBag.UserName = new SelectList(db.Users, "UserName", "UserName");
             return View();
         }
 

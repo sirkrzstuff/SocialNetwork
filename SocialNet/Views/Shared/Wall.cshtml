@@ -9,7 +9,6 @@
 </div>   
 @foreach (var userStatus in Model.ConnectionUserStatuses)
 {
-
     <div class="StatusForm">
         <p style="color: grey;">@userStatus.Author | @userStatus.StatusDate | @userStatus.ID</p>
         <p>@userStatus.StatusBody</p>
@@ -20,7 +19,7 @@
                 foreach (var comment in Model.ConnectionComments.Where(status => status.UserStatusID == userStatus.ID))
                 {
                     <div class="CommentForm">
-                        @*<p style="color: grey;">@c.Author | @c.CommentDate | @c.Id</p>*@
+                        <p style="color: grey;">@comment.Author | @comment.CommentDate </p>
                         <p>@comment.CommentBody</p>
                     </div>
                 }
@@ -35,8 +34,7 @@
                     
                 }
             }
-        </div>
-       
+        </div>      
     </div>
 }
 

@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -165,28 +171,41 @@
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessengersController.cs" />
     <Compile Include="Controllers\PhotosController.cs" />
+    <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UserStatusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\MessengerHub.cs" />
+    <Compile Include="Hubs\SignalRConnection.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CommentService.cs" />
+    <Compile Include="Service\FriendListService.cs" />
+    <Compile Include="Service\GroupService.cs" />
+    <Compile Include="Service\MessengerService.cs" />
     <Compile Include="Service\PersonaType.cs" />
     <Compile Include="Service\PhotoAvatarAndBackground.cs" />
+    <Compile Include="Service\PhotoService.cs" />
     <Compile Include="Service\StatusService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Comment.cs" />
+    <Compile Include="ViewModels\Connection.cs" />
+    <Compile Include="ViewModels\ConnectionViewModel.cs" />
     <Compile Include="ViewModels\FollowerList.cs" />
     <Compile Include="ViewModels\FriendList.cs" />
     <Compile Include="ViewModels\Groups.cs" />
+    <Compile Include="ViewModels\Messenger.cs" />
     <Compile Include="ViewModels\Persona.cs" />
     <Compile Include="ViewModels\Photo.cs" />
+    <Compile Include="ViewModels\Profile.cs" />
     <Compile Include="ViewModels\SearchBar.cs" />
     <Compile Include="ViewModels\SearchResults.cs" />
     <Compile Include="ViewModels\User.cs" />
@@ -209,6 +228,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -303,6 +324,25 @@
     <Content Include="Views\UserStatus\Wall.cshtml" />
     <Content Include="Views\FriendLists\Search.cshtml" />
     <Content Include="Views\FriendLists\SearchResults.cshtml" />
+    <Content Include="Views\Messengers\Create.cshtml" />
+    <Content Include="Views\Messengers\Delete.cshtml" />
+    <Content Include="Views\Messengers\Details.cshtml" />
+    <Content Include="Views\Messengers\Edit.cshtml" />
+    <Content Include="Views\Messengers\Index.cshtml" />
+    <Content Include="Views\Profiles\Create.cshtml" />
+    <Content Include="Views\Profiles\Delete.cshtml" />
+    <Content Include="Views\Profiles\Details.cshtml" />
+    <Content Include="Views\Profiles\Edit.cshtml" />
+    <Content Include="Views\Profiles\Index.cshtml" />
+    <Content Include="Views\Shared\MyGroups.cshtml" />
+    <Content Include="Views\Shared\UsersOnline.cshtml" />
+    <Content Include="Views\Shared\Wall.cshtml" />
+    <Content Include="Views\Shared\RightBar.cshtml" />
+    <Content Include="Views\Photos\AddMultiplePhotos.cshtml" />
+    <Content Include="Views\Photos\AddSinglePhoto.cshtml" />
+    <Content Include="Views\Home\ProfilePhotos.cshtml" />
+    <Content Include="Views\Home\Chat.cshtml" />
+    <Content Include="Views\Home\Messenger.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

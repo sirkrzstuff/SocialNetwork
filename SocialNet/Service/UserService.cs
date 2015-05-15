@@ -40,7 +40,7 @@ namespace SocialNet.Service
         {
             var model = (from usr in db.Users
                          where usr.Id == id
-                         select usr).First();
+                         select usr).FirstOrDefault();
             return model;
         }
 
@@ -48,7 +48,7 @@ namespace SocialNet.Service
         {
             var model = (from usr in db.Users
                          where usr.UserName == email
-                         select usr).First();
+                         select usr).FirstOrDefault();
             return model;
         }
 

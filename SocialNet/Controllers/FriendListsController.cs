@@ -38,6 +38,7 @@ namespace SocialNet.Controllers
             model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
             model.ConnectionGroups = group_Service.GetAllGroups();
             model.ConnectionComments = comment_Service.GetAllComments();
+            var friendlist = db.FriendLists.Include(c => c.User);
 
             //return the model with initialized content to be used in the views.
             return View(model);
@@ -61,6 +62,7 @@ namespace SocialNet.Controllers
         // GET: FriendLists/Create
         public ActionResult Create()
         {
+            ViewBag.UserName = new SelectList(db.Users, "UserName", "UserName");
             return View();
         }
 
@@ -84,7 +86,7 @@ namespace SocialNet.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.UserName = new SelectList(db.Users, "UserName", "UserName");
             return View(formData);
         }
 
@@ -100,6 +102,7 @@ namespace SocialNet.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.UserName = new SelectList(db.Users, "UserName", "UserName", friendList.UserName);
             return View(friendList);
         }
 
@@ -116,6 +119,7 @@ namespace SocialNet.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.UserName = new SelectList(db.Users, "UserName", "UserName", friendList.UserName);
             return View(friendList);
         }
 

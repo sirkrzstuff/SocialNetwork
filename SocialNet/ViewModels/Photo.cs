@@ -18,6 +18,7 @@ namespace SocialNet.ViewModels
         public int PhotoAlbum { get; set; }
 
         //public virtual ApplicationUser Author { get; set; }
+        public virtual User User { get; set; }
 
         public Photo( )
 		{

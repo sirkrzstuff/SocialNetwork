@@ -126,5 +126,12 @@ namespace SocialNet.Controllers
         {
             return View();
         }
+
+        public ActionResult Messenger()
+        {
+            return View();
+        }
+
+       
     }
 }
