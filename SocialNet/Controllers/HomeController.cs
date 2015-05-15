@@ -110,5 +110,16 @@ namespace SocialNet.Controllers
 
             return View("ProfilePhotos", model);
         }
+
+        public ActionResult Photos(string userName)
+        {
+            model.ConnectionUsers = user_Service.GetAllUsers();
+            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_Service.GetAllGroups();
+            model.ConnectionPhotos = photo_Service.GetAllPhotos();
+
+            return View("Photos", model);
+        }
     }
 }

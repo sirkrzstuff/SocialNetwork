@@ -19,43 +19,53 @@
                         FriendListService friend_Service = new FriendListService();
                         var get_Friends = friend_Service.GetAllFriends(User.Identity.Name);
 
-                        foreach (var user in Model.ConnectionSearchresults.Users)
-                        {
-                            <div>
-                                <span>@Html.ActionLink(user.FirstName + " " + user.LastName, "../Home/Profile", new { id = user.Id })</span>
-                                <span style="padding: 50px"></span>
-                                @if (user.UserName == User.Identity.Name)
+                        <div>
+                            <table style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <td><strong>Name</strong></td>
+                                        <td><strong>Email</strong></td>
+                                        <td><strong>Friend status</strong></td>
+                                    </tr>
+                                </thead>
+
+                                @foreach (var user in Model.ConnectionSearchresults.Users)
                                 {
-                                    <span>This is you!</span>
+                                    <tr>
+                                        <td>@Html.ActionLink(user.FirstName + " " + user.LastName, "../Home/Profile", new { id = user.Id })</td>
+                                        <td>@user.UserName</td>
+                                        <td>
+                                            @if (user.UserName == User.Identity.Name)
+                                            {
+                                                <span>This is you!</span>
+                                            }
+                                            else
+                                            {
+                                                //var check = 0;
+                                                //foreach (var is_Friend in get_Friends)
+                                                //{
+                                                    //if (is_Friend.FriendName == User.Identity.Name)
+                                                    //{
+                                                    //    if(is_Friend == null)
+                                                    //    {
+                                                    //        return;
+                                                    //    }
+                                                    @Html.ActionLink("Send friend request", "AddAsFriend", new { friend = user.UserName })
+                                                    //check = 1;  //checks if the user is on the searchers friendslist.
+                                                    //break;      //breaks the loop if he was found.
+                                                    //}
+                                                @*}*@
+                                            }
+                                            @*if (check != 1) //If the user is already the searchers friend, the message below is displayed.
+                                            {
+                                                <span>Already friends!</span>;
+                                            }*@
+                                        </td>
+                                    </tr>
                                 }
-                                else
-                                {
-                                    var check = 0;
-                                    foreach (var is_Friend in get_Friends)
-                                    {
-                                        if (is_Friend.FriendName == User.Identity.Name)
-                                        {
-                                            <span>Html.ActionLink("Send friend request", "AddAsFriend", new { friend = user.UserName })</span>
-                                            check = 1;  //checks if the user is on the searchers friendslist.
-                                            break;      //breaks the loop if he was found.
-                                        }
-                                    }
-                                    if (check != 1) //If the user is already the searchers friend, the message below is displayed.
-                                    {
-                                        <span>Already friends!</span>;
-                                    }
-                                }
-                            </div>
-                        }
+                            </table>
+                        </div>
                     }
-                    @*if (Model.ConnectionSearchresults.Personas != null && Model.ConnectionSearchresults.Personas.Any())
-                {
-                    <h2>Personas found</h2>
-                    foreach (var persona in Model.ConnectionSearchresults.Personas)
-                    {
-                        <div>@persona.UserName</div>
-                    }
-                }*@
                 }
             </div>
         </div>
