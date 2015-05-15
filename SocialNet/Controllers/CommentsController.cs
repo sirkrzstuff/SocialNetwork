@@ -48,7 +48,7 @@ namespace SocialNet.Controllers
             ViewBag.UserStatusID = new SelectList(db.UserStatuses, "ID", "ID");
             var newComment = new Comment();
             newComment.UserStatusID = UserStatusID;
-            newComment.Author = this.User.Identity.Name;
+            
 
             return View(newComment);    
             //return View();
@@ -63,6 +63,7 @@ namespace SocialNet.Controllers
         {
             if (ModelState.IsValid)
             {
+                comment.Author = this.User.Identity.Name;
                 db.Comments.Add(comment);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");

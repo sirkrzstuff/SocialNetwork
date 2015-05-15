@@ -257,10 +257,21 @@ body > #container {
 
 .StatusForm {
     margin: 20px;
-    height: 150px;
-    border: 1px solid #999;
-    padding: 50px;
+    border: 1px outset #999;
+    padding: 25px;
     border-radius: 25px;
+}
+.CommentForm {
+    margin: 20px;
+    border: 1px solid #999;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.add-comment {
+    padding: 20px 0px;
+    margin: 20px 0px;
+    
 }
 
 .grps-block {
