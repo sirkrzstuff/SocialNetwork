@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNet.Identity;
+@using SocialNet.Service;
+@model SocialNet.ViewModels.ConnectionViewModel
+@{
+    ViewBag.Title = "Profile";
+}
+
+<body>
+    @{Html.RenderPartial("LoginBar", Model);}
+    @{Html.RenderPartial("ProfileBar", Model);}
+    <div class="Profile-wall">
+        <div class="wall-posts">
+            <div class="About-container">
+                <h2>About: </h2>
+                <div class="profile-about-text">
+                    @{
+                        UserService service = new UserService();
+                        var about = service.GetUserById(Model.ConnectionUserForm.Id);
+                    }
+                    <p>@about.AboutUser</p>
+                </div>
+            </div>
+            <div class="friend-list-container">
+                <h3>Friend list</h3>
+                @foreach (var usr in Model.ConnectionFriendlist)
+                {
+                    var model = service.GetUserByEmail(usr.FriendName);
+                    @Html.ActionLink(model.FirstName + " " + model.LastName, "../Home/Profile", new { id = usr.Id })
+                }
+            </div>
+        </div>
+    </div>
+    @Html.Partial("RightBar", Model)
+</body>

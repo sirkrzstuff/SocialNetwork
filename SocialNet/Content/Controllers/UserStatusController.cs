@@ -12,7 +12,7 @@ using SocialNet.Service;
 
 namespace SocialNet.Controllers
 {
-    public class PhotosController : Controller
+    public class UserStatusController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -25,131 +25,118 @@ namespace SocialNet.Controllers
         FriendListService friend_Service = new FriendListService();
         GroupService group_Service = new GroupService();
         CommentService comment_Service = new CommentService();
-        PhotoService photo_Service = new PhotoService();
 
-        // GET: Photos
+        // GET: UserStatus
         public ActionResult Index()
         {
+            //Instances filled with content
             model.ConnectionUsers = user_Service.GetAllUsers();
             model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
             model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
             model.ConnectionGroups = group_Service.GetAllGroups();
             model.ConnectionComments = comment_Service.GetAllComments();
 
-            var photo = db.Photos.Include(c => c.User);
-            return View(db.Photos.ToList());
+            return View(db.UserStatuses.ToList());
         }
 
-        // GET: Photos/Details/5
+        // GET: UserStatus/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Photo photo = db.Photos.Find(id);
-            if (photo == null)
+            UserStatus userStatus = db.UserStatuses.Find(id);
+            if (userStatus == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UserName = new SelectList(db.Users, "UserName", "UserName");
-            return View(photo);
+            return View(userStatus);
         }
 
-        // GET: Photos/Create
+        // GET: UserStatus/Create
         public ActionResult Create()
         {
-            model.ConnectionUsers = user_Service.GetAllUsers();
-            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
-            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
-            model.ConnectionGroups = group_Service.GetAllGroups();
-            model.ConnectionComments = comment_Service.GetAllComments();
-            ViewBag.UserName = new SelectList(db.Users, "UserName", "UserName");
-            return View(model);
+            return View();
         }
 
-        // POST: Photos/Create
+        // POST: UserStatus/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(FormCollection form)
+        public ActionResult Create([Bind(Include = "ID,StatusBody,StatusDate")] UserStatus userStatus)
         {
             if (ModelState.IsValid)
             {
-                model.ConnectionsPhotoForm = new Photo
-                {
-                    PhotoUrl = form["ConnectionsPhotoForm.PhotoUrl"],
-                    PhotoCaption = form["ConnectionsPhotoForm.PhotoCaption"],
-                    //Id = Convert.ToInt32(form["ConnectionsPhotoForm.Id"]),
-                    //PhotoDate = Convert.ToDateTime(form["ConnectionsPhotoForm.PhotoDate"]),
-                    UserName = this.User.Identity.Name,
-                    PhotoAlbum = Convert.ToInt32(form["ConnectionsPhotoForm.PhotoAlbum"])
-                };
+                //Creates a new comment section for the status
+                //Comment newComment = new Comment();
+                //newComment.UserStatusId = userStatus.Id;
+                //db.Comments.Add(newComment);
+                //db.SaveChanges();
 
-                db.Photos.Add(model.ConnectionsPhotoForm);
+                userStatus.Author = this.User.Identity.Name;
+                db.UserStatuses.Add(userStatus);
                 db.SaveChanges();
-                return RedirectToAction("Index", model);
+                return RedirectToAction("Index", "Home");
             }
-            ViewBag.UserName = new SelectList(db.Users, "UserName", "UserName");
-            return View(form);
+
+            return View(userStatus);
         }
 
-        // GET: Photos/Edit/5
+        // GET: UserStatus/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Photo photo = db.Photos.Find(id);
-            if (photo == null)
+            UserStatus userStatus = db.UserStatuses.Find(id);
+            if (userStatus == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UserName = new SelectList(db.Users, "UserName", "UserName", photo.UserName);
-            return View(photo);
+            return View(userStatus);
         }
 
-        // POST: Photos/Edit/5
+        // POST: UserStatus/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,PhotoCaption,PhotoUrl,UserName,PhotoDate,PhotoAlbum")] Photo photo)
+        public ActionResult Edit([Bind(Include = "ID,StatusBody,StatusDate")] UserStatus userStatus)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(photo).State = EntityState.Modified;
+                db.Entry(userStatus).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserName = new SelectList(db.Users, "UserName", "UserName", photo.UserName);
-            return View(photo);
+            return View(userStatus);
         }
 
-        // GET: Photos/Delete/5
+        // GET: UserStatus/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Photo photo = db.Photos.Find(id);
-            if (photo == null)
+            UserStatus userStatus = db.UserStatuses.Find(id);
+            if (userStatus == null)
             {
                 return HttpNotFound();
             }
-            return View(photo);
+            return View(userStatus);
         }
 
-        // POST: Photos/Delete/5
+        // POST: UserStatus/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Photo photo = db.Photos.Find(id);
-            db.Photos.Remove(photo);
+            UserStatus userStatus = db.UserStatuses.Find(id);
+            db.UserStatuses.Remove(userStatus);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -162,5 +149,33 @@ namespace SocialNet.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Wall()
+        {
+            var model = (from data in db.UserStatuses
+                         orderby data.ID descending
+                         select data).ToList();
+
+            return View(model);
+        }     
+
+        //public ActionResult AddComment(int userStatusId, string commentBody)
+        //{
+            
+        //    var newComment = new Comment
+        //    {
+        //        Author = this.User.Identity.Name,
+        //        UserStatusId = 0,
+        //        CommentBody = commentBody
+        //    };
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Comments.Add(newComment);
+        //        db.SaveChanges(); 
+        //    }
+
+        //    return RedirectToAction("Index", "Home");
+        //}
     }
 }

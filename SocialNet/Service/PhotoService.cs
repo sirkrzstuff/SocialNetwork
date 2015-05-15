@@ -19,6 +19,15 @@ namespace SocialNet.Service
             return model;
         }
 
+        public IEnumerable<Photo> GetPhotosFromUserId(int id)
+        {
+            var model = (from photos in db.Photos
+                         where photos.Id == id
+                         orderby photos.PhotoDate
+                         select photos).ToList();
+            return model;
+        }
+
         public IEnumerable<Photo> GetAllPhotos()
         {
             var model = (from photos in db.Photos

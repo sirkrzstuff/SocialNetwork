@@ -14,7 +14,7 @@ namespace SocialNet.ViewModels
         public string UserName { get; set; }
         public string FriendName { get; set; }
         public bool? FriendIsTopFriend { get; set; }
- 
+
         public FriendStatus FriendStatus { get; set; }
         public virtual User User { get; set; }
 

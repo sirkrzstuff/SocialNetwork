@@ -17,16 +17,21 @@ namespace SocialNet.ViewModels
     {
 
         public int Id { get; set; }
+        [Display(Name = "Email")]
         public string UserName { get; set; }
-        [Required]   
+        [Required]
+        [Display(Name = "First name")]
         public string FirstName { get; set; }
         [Required]
+        [Display(Name = "Last name")]
         public string LastName { get; set; }
-
+        [Display(Name = "Gender")]
         public bool IsMale { get; set; }
+        [Display(Name = "Relationship status")]
         public bool IsSingle { get; set; }
-
+        [Display(Name = "Birth date")]
         public DateTime? DateOfBirth { get; set; }
+        [Display(Name = "About me")]
         public string AboutUser { get; set; }
 
         public virtual ICollection<Groups> GroupList { get; set; }

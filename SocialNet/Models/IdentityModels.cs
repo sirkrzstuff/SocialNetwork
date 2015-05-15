@@ -49,7 +49,7 @@ namespace SocialNet.Models
         
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("HrConnection", throwIfV1Schema: false)
         {
         }
 

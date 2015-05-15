@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNet.Identity;
+@using SocialNet.Service;
+@model SocialNet.ViewModels.ConnectionViewModel
+
+@{
+    ViewBag.Title = "Edit your profile";
+}
+
+<body>
+    @{Html.RenderPartial("LoginBar", Model);}
+    @{Html.RenderPartial("ProfileBar", Model);}
+    <div class="Profile-wall">
+        <div class="wall-posts">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <h3>Edit your profile account.</h3>
+            <hr />
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConnectionUserForm.AboutUser, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.ConnectionUserForm.AboutUser, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConnectionUserForm.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ConnectionUserForm.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConnectionUserForm.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ConnectionUserForm.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.ConnectionUserForm.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ConnectionUserForm.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>*@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConnectionUserForm.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ConnectionUserForm.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConnectionUserForm.IsMale, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(model => model.ConnectionUserForm.IsMale, "true", new { id = "male" })
+                        @Html.Label("male", "Male")
+                        @Html.RadioButtonFor(model => model.ConnectionUserForm.IsMale, "false", new { id = "female" })
+                        @Html.Label("female", "Female")
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConnectionUserForm.IsSingle, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(model => model.ConnectionUserForm.IsSingle, "true", new { id = "single" })
+                        @Html.Label("single", "Single")
+                        @Html.RadioButtonFor(model => model.ConnectionUserForm.IsSingle, "false", new { id = "notSingle" })
+                        @Html.Label("notSingle", "In relationship")
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        }
+        </div>
+    </div>
+    @Html.Partial("RightBar", Model)
+</body>
