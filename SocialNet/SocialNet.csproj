@@ -166,14 +166,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
-    <Compile Include="Controllers\FollowerListsController.cs" />
     <Compile Include="Controllers\FriendListsController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessengersController.cs" />
     <Compile Include="Controllers\PhotosController.cs" />
-    <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UserStatusController.cs" />
     <Compile Include="Global.asax.cs">
@@ -217,12 +215,15 @@
     <Content Include="Content\images\default.png" />
     <Content Include="Content\images\group-photo.png" />
     <Content Include="Content\images\group-photo_resize.png" />
+    <Content Include="Content\images\settings.png" />
+    <Content Include="Content\images\welcome.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-migrate-1.2.1.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -296,11 +297,6 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Personas\Create.cshtml" />
-    <Content Include="Views\Personas\Delete.cshtml" />
-    <Content Include="Views\Personas\Details.cshtml" />
-    <Content Include="Views\Personas\Edit.cshtml" />
-    <Content Include="Views\Personas\Index.cshtml" />
     <Content Include="Views\FriendLists\Create.cshtml" />
     <Content Include="Views\FriendLists\Delete.cshtml" />
     <Content Include="Views\FriendLists\Details.cshtml" />
@@ -329,11 +325,6 @@
     <Content Include="Views\Messengers\Details.cshtml" />
     <Content Include="Views\Messengers\Edit.cshtml" />
     <Content Include="Views\Messengers\Index.cshtml" />
-    <Content Include="Views\Profiles\Create.cshtml" />
-    <Content Include="Views\Profiles\Delete.cshtml" />
-    <Content Include="Views\Profiles\Details.cshtml" />
-    <Content Include="Views\Profiles\Edit.cshtml" />
-    <Content Include="Views\Profiles\Index.cshtml" />
     <Content Include="Views\Shared\MyGroups.cshtml" />
     <Content Include="Views\Shared\UsersOnline.cshtml" />
     <Content Include="Views\Shared\Wall.cshtml" />
@@ -343,6 +334,9 @@
     <Content Include="Views\Home\ProfilePhotos.cshtml" />
     <Content Include="Views\Home\Chat.cshtml" />
     <Content Include="Views\Home\Messenger.cshtml" />
+    <Content Include="Views\Home\EditProfile.cshtml" />
+    <Content Include="Views\Home\FriendList.cshtml" />
+    <Content Include="Views\Home\Photos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

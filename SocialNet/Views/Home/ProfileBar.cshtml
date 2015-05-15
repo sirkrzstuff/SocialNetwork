@@ -41,12 +41,47 @@
     }
     <div class="profile-links">
         <div class="profile-buttons-edit">
-            @Html.ActionLink("Photos", "ProfilePhotos", new { userName = Model.ConnectionUserForm.Id })
+            @Html.ActionLink("Photos", "ProfilePhotos", new { id = Model.ConnectionUserForm.Id })
         </div>
     </div>
     <div class="profile-links">
         <div class="profile-buttons-edit">
-            @Html.ActionLink("Friends", "FriendList", new { userName = Model.ConnectionUserForm.Id })
+            @Html.ActionLink("Friends", "FriendList", new { id = Model.ConnectionUserForm.Id })
         </div>
     </div>
+    @{
+        if (Model.ConnectionUserForm.UserName != User.Identity.Name)
+        {
+            if (Model.ConnectionFriendlist.Count() == 0)
+            {
+                <div class="profile-links">
+                        <button type="button" class="profile-buttons-edit" disabled>Add as friend</button>
+                        @*@Html.ActionLink("Add as friend", "AddAsFriend", new { id = Model.ConnectionUserForm.Id })*@
+                </div>
+            }
+            else
+            {
+                foreach (var checkUser in Model.ConnectionFriendlist)
+                {
+                    if (checkUser.FriendName == Model.ConnectionUserForm.UserName && checkUser.UserName == User.Identity.Name)
+                    {
+                        <div class="profile-links">
+                            <div>
+                                <button type="button" class="profile-buttons-edit" disabled>Already Friends!</button>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="profile-links">
+                            <div class="profile-buttons-edit">
+                                @Html.ActionLink("Add as friend", "AddAsFriend", new { id = Model.ConnectionUserForm.Id })
+                            </div>
+                        </div>
+                    }
+                }
+            }
+
+        }
+}
 </div>

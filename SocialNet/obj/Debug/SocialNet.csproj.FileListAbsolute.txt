@@ -166,3 +166,7 @@ C:\Users\krz\Documents\SkolinnKK\Skóli\2.onn\SocialNetwork\SocialNet\bin\Micros
 C:\Users\krz\Documents\SkolinnKK\Skóli\2.onn\SocialNetwork\SocialNet\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\krz\Documents\SkolinnKK\Skóli\2.onn\SocialNetwork\SocialNet\obj\Debug\SocialNet.dll
 C:\Users\krz\Documents\SkolinnKK\Skóli\2.onn\SocialNetwork\SocialNet\obj\Debug\SocialNet.pdb
+C:\Users\Agust\Desktop\HR\Vor-2015\VLN2\project_source\SocialNet\SocialNet\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Agust\Desktop\HR\Vor-2015\VLN2\project_source\SocialNet\SocialNet\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Agust\Desktop\HR\Vor-2015\VLN2\project_source\SocialNet\SocialNet\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Agust\Desktop\HR\Vor-2015\VLN2\project_source\SocialNet\SocialNet\bin\Microsoft.AspNet.SignalR.SystemWeb.xml

@@ -5,31 +5,30 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-        @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
     
-        UserService user_service = new UserService();
-        if (user_service != null) 
-        { 
-            var modelUser = user_service.GetUserByEmail(User.Identity.Name);
-            string gender = "";
-    
-                if (modelUser.IsMale == true)
-                {
-                    gender = "Mr. ";
-                }
-                else
-                {
-                    gender = "Mrs. ";
-                }
+    UserService user_service = new UserService();
+    var modelUser = user_service.GetUserByEmail(User.Identity.Name);
+    string gender = "";
+    if(modelUser.IsMale == true)
+    {
+        gender = "Mr. ";
+    }
+    else
+    {
+        gender = "Mrs. ";
+    }
     
     
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    @Html.ActionLink("Hello "+ gender + modelUser.LastName + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                </li>
-                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-            </ul>
-        }
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + gender + modelUser.LastName + "!", @Url.Content("../Home/Profile"), new { id = modelUser.Id })
+        </li>
+        <li style="margin-top: 10px;">
+            @Html.ActionLink("settings", "../Manage" , null, new { @class = "settings-img" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
     }
 }
 else

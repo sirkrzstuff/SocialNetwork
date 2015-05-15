@@ -100,6 +100,7 @@ namespace SocialNet.Controllers
         [Authorize]
         public ActionResult ProfileBar()
         {
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
             return View("Profile", model);
         }
 
@@ -115,7 +116,7 @@ namespace SocialNet.Controllers
             return View("ProfilePhotos", model);
         }
 
-        public ActionResult Photos(string userName)
+        public ActionResult Photos(int id)
         {
             model.ConnectionUsers = user_Service.GetAllUsers();
             model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
@@ -178,6 +179,12 @@ namespace SocialNet.Controllers
             }
 
             return View(form);
+        }
+
+        public ActionResult AddAsFriend(string username)
+        {
+            FriendListsController ctrl = new FriendListsController();
+            return ctrl.AddAsFriend(username);
         }
     }
 }

@@ -25,7 +25,7 @@
                 @foreach (var usr in Model.ConnectionFriendlist)
                 {
                     var model = service.GetUserByEmail(usr.FriendName);
-                    @Html.ActionLink(model.FirstName + " " + model.LastName, "../Home/Profile", new { id = usr.Id })
+                    @Html.ActionLink(model.FirstName + " " + model.LastName, "../Home/Profile", new { id = model.Id })
                 }
             </div>
         </div>

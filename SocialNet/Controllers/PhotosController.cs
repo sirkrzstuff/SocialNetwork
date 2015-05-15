@@ -89,7 +89,7 @@ namespace SocialNet.Controllers
 
                 db.Photos.Add(model.ConnectionsPhotoForm);
                 db.SaveChanges();
-                return RedirectToAction("Index", model);
+                return RedirectToAction("../Home", model);
             }
             ViewBag.UserName = new SelectList(db.Users, "UserName", "UserName");
             return View(form);

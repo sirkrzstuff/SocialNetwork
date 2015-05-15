@@ -43,7 +43,6 @@ namespace SocialNet.Models
         public DbSet<UserStatus> UserStatuses { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<FriendList> FriendLists { get; set; }
-        public DbSet<FollowerList> FollowerLists { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Groups> GroupsList { get; set;}
         
