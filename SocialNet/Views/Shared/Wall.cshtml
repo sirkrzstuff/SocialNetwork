@@ -6,37 +6,39 @@
     {
         @Html.Action("Create", "UserStatus")
     }
-</div>   
-@foreach (var userStatus in Model.ConnectionUserStatuses)
-{
-    <div class="StatusForm">
-        <p style="color: grey;">@userStatus.Author | @userStatus.StatusDate | @userStatus.ID</p>
-        <p>@userStatus.StatusBody</p>
+</div>
+<div class="StatusForm">   
+    @foreach (var userStatus in Model.ConnectionUserStatuses)
+    {
+        <div>
+            <p style="color: grey;">@userStatus.Author | @userStatus.StatusDate</p>
+            <p>@userStatus.StatusBody</p>
+        </div>
+        <div class="add-comment">
+            @if (userStatus.ID != null)
+            {
+                using (Html.BeginForm("Create", "Comments"))
+                {
+                    @Html.Action("Create", "Comments", new { UserStatusId = userStatus.ID })
+
+                }
+            }
+        </div>
         <div>
             @if (Model.ConnectionComments != null)
             {
                 //foreach (var c in Model.cn_comments.Where(s => s.UserStatusId == u.Id))
                 foreach (var comment in Model.ConnectionComments.Where(status => status.UserStatusID == userStatus.ID))
                 {
-                    <div class="CommentForm">
+                    <div class ="CommentForm">
                         <p style="color: grey;">@comment.Author | @comment.CommentDate </p>
                         <p>@comment.CommentBody</p>
                     </div>
                 }
             }
         </div>
-        <div>
-            @if (userStatus.ID != null)
-            {
-                using (Html.BeginForm("Create", "Comments"))
-                {
-                    @Html.Action("Create", "Comments", new { UserStatusId = userStatus.ID })
-                    
-                }
-            }
-        </div>      
-    </div>
-}
+    }
+</div>
 
 
  

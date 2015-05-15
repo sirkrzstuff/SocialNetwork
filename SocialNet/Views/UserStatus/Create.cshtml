@@ -7,8 +7,8 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-inline">
             <div class="col-md-10">
-                @Html.EditorFor(model => model.StatusBody, new { htmlAttributes = new { @class = "form-control" } })
-                <input type="submit" value="Create" class="btn btn-default list-inline" />
+                @Html.EditorFor(model => model.StatusBody, new { htmlAttributes = new { @class = "form-control", @placeholder = "What's up?" } })
+                <input type="hidden" value="Create" class="btn btn-default list-inline" />
             </div>
         </div>
     </div>
