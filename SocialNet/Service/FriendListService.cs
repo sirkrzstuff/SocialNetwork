@@ -21,5 +21,14 @@ namespace SocialNet.Service
                          select friend).ToList();
             return model;
         }
+
+        public IEnumerable<FriendList> GetAllFriendsByUserId(int id)
+        {
+            var model = (from friend in db.FriendLists
+                         where friend.Id == id
+                         orderby friend.FriendName
+                         select friend).ToList();
+            return model;
+        }
     }
 }

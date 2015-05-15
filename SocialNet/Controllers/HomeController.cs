@@ -10,6 +10,7 @@ using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using System.Web.UI.WebControls;
 using System.Net;
+using System.Data.Entity;
 
 namespace SocialNet.Controllers
 {
@@ -61,17 +62,20 @@ namespace SocialNet.Controllers
         [Authorize]
         public ActionResult Profile(int? id)
         {
-            model.ConnectionUsers = user_Service.GetAllUsers();
-            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
-            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
-            model.ConnectionGroups = group_Service.GetAllGroups();
-            model.ConnectionComments = comment_Service.GetAllComments();
-            model.ConnectionUserForm = user_Service.GetUserById(id);
-
-            if (id == null)
+            if(id != null)
+            {
+                model.ConnectionUsers = user_Service.GetAllUsers();
+                model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+                model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+                model.ConnectionGroups = group_Service.GetAllGroups();
+                model.ConnectionComments = comment_Service.GetAllComments();
+                model.ConnectionUserForm = user_Service.GetUserById(id);
+            }
+            else if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Profile profiles = db.Profiles.Find(id);
             if (profiles == null)
             {
@@ -99,14 +103,14 @@ namespace SocialNet.Controllers
             return View("Profile", model);
         }
 
-        public ActionResult ProfilePhotos(string userName)
+        public ActionResult ProfilePhotos(int id)
         {
             model.ConnectionUsers = user_Service.GetAllUsers();
             model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
             model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
             model.ConnectionGroups = group_Service.GetAllGroups();
-            model.ConnectionPhotos = photo_Service.GetPhotosFromUserName(userName);
-            model.ConnectionUserForm = user_Service.GetUserByEmail(userName);
+            model.ConnectionPhotos = photo_Service.GetPhotosFromUserId(id);
+            model.ConnectionUserForm = user_Service.GetUserById(id);
 
             return View("ProfilePhotos", model);
         }
@@ -126,5 +130,49 @@ namespace SocialNet.Controllers
         {
             return View();
         }
+
+        public ActionResult FriendList(int id)
+        {
+            model.ConnectionGroups = group_Service.GetAllGroups();
+            model.ConnectionFriendlist = friend_Service.GetAllFriendsByUserId(id);
+            model.ConnectionUserForm = user_Service.GetUserById(id);
+
+            return View("FriendList", model);
+        }
+
+        public ActionResult EditProfile(int id)
+        {
+            model.ConnectionGroups = group_Service.GetAllGroups();
+            model.ConnectionUserForm = user_Service.GetUserById(id);
+            return View("EditProfile", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProfile(FormCollection form)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = user_Service.GetUserByEmail(form["ConnectionUserForm.UserName"]);
+                model.ConnectionUserForm = new User
+                {
+                    Id = user.Id,
+                    DateOfBirth = Convert.ToDateTime(form["ConnectionUserForm.DateOfBirth"]),
+                    FirstName = form["ConnectionUserForm.FirstName"],
+                    LastName = form["ConnectionUserForm.LastName"],
+                    AboutUser = form["ConnectionUserForm.AboutUser"],
+                    IsMale = Convert.ToBoolean(form["ConnectionUserForm.IsMale"]),
+                    IsSingle = Convert.ToBoolean(form["ConnectionUserForm.IsSingle"]),
+                    UserName = form["ConnectionUserForm.UserName"]
+                };
+
+                db.Entry(model.ConnectionUserForm).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Profile", new { id = model.ConnectionUserForm.Id });
+            }
+
+            return View(form);
+        }
+
     }
 }

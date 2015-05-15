@@ -22,7 +22,10 @@
     
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello "+ gender + modelUser.LastName + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink("Hello " + gender + modelUser.LastName + "!", @Url.Content("~/Profile"), new { id = modelUser.Id })
+        </li>
+        <li style="margin-top: 10px;">
+            @Html.ActionLink("settings", "Index", "Manage", null, new { @class = "settings-img" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>

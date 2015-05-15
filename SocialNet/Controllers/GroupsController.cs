@@ -80,7 +80,7 @@ namespace SocialNet.Controllers
                 model.ConnectionGroupsForm = new Groups
                 {
                     Id = Convert.ToInt32(form["ConnectionGroupsForm.Id"]),
-                    //CreatorName = form["ConnectionGroupsForm.CreatorName"],
+                    GroupDateCreated = DateTime.Now,
                     CreatorName = this.User.Identity.Name,
                     GroupName = form["ConnectionGroupsForm.GroupName"],
                     GroupPhoto = form["ConnectionGroupsForm.GroupPhoto"]
@@ -88,7 +88,7 @@ namespace SocialNet.Controllers
 
                 db.GroupsList.Add(model.ConnectionGroupsForm);
                 db.SaveChanges();
-                return RedirectToAction("GroupProfile");
+                return RedirectToAction("GroupProfile", new { id = model.ConnectionGroupsForm.Id });
             }
 
             return View(form);

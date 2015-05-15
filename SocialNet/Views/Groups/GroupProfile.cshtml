@@ -11,13 +11,13 @@
             <input type="image" src="@Model.ConnectionGroupsForm.GroupPhoto" class="group-img" alt="The Groups Image" />
         </div>
         <div class="group-horizontal-bar">
-            <div style="padding: 0px 25px 0px 10px; text-align: center; display: inline-block;">
+            <div style=" padding-left: 15px; width: 35%; text-align: left; display: inline-block;">
                 @Html.DisplayFor(itemModel => Model.ConnectionGroupsForm.GroupName)
             </div>
-            <div style="padding: 0px 10px 0px 10px; text-align: center; display: inline-block;">
+            <div style=" width: 30%; text-align: center; display: inline-block;">
                 Members:
             </div>
-            <div style="padding: 0px 10px 0px 10px; text-align: center; display: inline-block; text-align: right;">
+            <div style=" width: 33%; text-align: right; display: inline-block;">
                 @Html.ActionLink("AddMembers", "", "")
             </div>
         </div>

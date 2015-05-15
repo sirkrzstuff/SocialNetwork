@@ -6,28 +6,28 @@
 
 <body>
     @{Html.RenderPartial("LoginBar", Model);}
-    <div class="Profile-wall">
-        <div class="wall-posts">
-            @{
-                var getfriends = Model.ConnectionFriendlist;
+    <div class="main-container">
+            <div class="wall-posts">
+                @{
+                    var getfriends = Model.ConnectionFriendlist;
 
-                foreach (var photo in Model.ConnectionPhotos)
-                {
-                    foreach (var usr in getfriends)
+                    foreach (var photo in Model.ConnectionPhotos)
                     {
-                        if (photo.UserName == usr.FriendName)
+                        foreach (var usr in getfriends)
                         {
-                            <div class="photo-container">
-                                <p>Photo added on @photo.PhotoDate</p>
-                                <div><img src="@photo.PhotoUrl" alt="the image couldn't' load :(" /></div>
-                                <div class="photo-caption">@photo.PhotoCaption</div>
-                            </div>
+                            if (photo.UserName == usr.FriendName)
+                            {
+                                <div class="photobox">
+                                    <p>Photo added on @photo.PhotoDate</p>
+                                    <a href="@photo.PhotoUrl"><div class="photo-container" style="background-image:url(@photo.PhotoUrl)"></div></a>
+                                    <div class="photo-caption">@photo.PhotoCaption</div>
+                                </div>
+                            }
                         }
-                    }
 
+                    }
                 }
-            }
-        </div>
+            </div>
     </div>
-    @Html.Partial("RightBar", Model)
 </body>
+@Html.Partial("RightBar", Model)

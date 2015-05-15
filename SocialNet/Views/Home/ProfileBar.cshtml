@@ -22,8 +22,7 @@
                 { gender = "Male"; }else { gender = "Female"; }
                 string single = "";
                 if(Model.ConnectionUserForm.IsSingle == true)
-                { single = "Single"; } else { single = "In a relationship"; }
-                
+                { single = "Single"; } else { single = "Not single!"; }
             }
             <p>Age: @age</p>
             <p>Sex: @gender</p>
@@ -34,16 +33,20 @@
         if (Model.ConnectionUserForm.UserName == User.Identity.Name)
         {
             <div class="profile-links">
-                <input type="button" value="Edit Profile" class="profile-buttons-edit" />
+                <div class="profile-buttons-edit">
+                    @Html.ActionLink("Edit profile", "EditProfile", new { id = Model.ConnectionUserForm.Id })
+                </div>
             </div>
         }
     }
     <div class="profile-links">
         <div class="profile-buttons-edit">
-            @Html.ActionLink("Photos", "ProfilePhotos", new { userName = Model.ConnectionUserForm.UserName })
+            @Html.ActionLink("Photos", "ProfilePhotos", new { userName = Model.ConnectionUserForm.Id })
         </div>
     </div>
     <div class="profile-links">
-        <button type="button" value="Friends" class="profile-buttons" />
+        <div class="profile-buttons-edit">
+            @Html.ActionLink("Friends", "FriendList", new { userName = Model.ConnectionUserForm.Id })
+        </div>
     </div>
 </div>
