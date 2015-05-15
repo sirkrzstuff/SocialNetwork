@@ -121,5 +121,10 @@ namespace SocialNet.Controllers
 
             return View("Photos", model);
         }
+
+        public ActionResult Chat()
+        {
+            return View();
+        }
     }
 }
