@@ -78,7 +78,7 @@ namespace SocialNet.Controllers
                 {
                     PhotoUrl = form["ConnectionsPhotoForm.PhotoUrl"],
                     PhotoCaption = form["ConnectionsPhotoForm.PhotoCaption"],
-                    Id = Convert.ToInt32(form["ConnectionsPhotoForm.PhotoUrl"]),
+                    Id = Convert.ToInt32(form["ConnectionsPhotoForm.Id"]),
                     PhotoDate = Convert.ToDateTime(form["ConnectionsPhotoForm.PhotoDate"]),
                     UserName = this.User.Identity.Name,
                     PhotoAlbum = Convert.ToInt32(form["ConnectionsPhotoForm.PhotoAlbum"])

@@ -88,7 +88,7 @@ namespace SocialNet.Controllers
 
                 db.GroupsList.Add(model.ConnectionGroupsForm);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("GroupProfile");
             }
 
             return View(form);

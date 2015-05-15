@@ -219,7 +219,7 @@ namespace SocialNet.Controllers
                     db.FriendLists.Add(friendSwitch);
                     db.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
             }
 

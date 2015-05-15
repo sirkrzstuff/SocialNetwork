@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace SocialNet.Hubs
 {
@@ -12,5 +14,6 @@ namespace SocialNet.Hubs
         {
             Clients.All.addNewMessageToPage(name, message);
         }
+
     }
 }

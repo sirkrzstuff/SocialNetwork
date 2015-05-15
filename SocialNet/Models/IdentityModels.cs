@@ -39,6 +39,7 @@ namespace SocialNet.Models
     {
         public DbSet<User> Users { get; set; }
         //public DbSet<Persona> Personas { get; set; }
+        public DbSet<Connection> Connections { get; set; }
         public DbSet<UserStatus> UserStatuses { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<FriendList> FriendLists { get; set; }
@@ -48,7 +49,7 @@ namespace SocialNet.Models
         
 
         public ApplicationDbContext()
-            : base("HrConnection", throwIfV1Schema: false)
+            : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 

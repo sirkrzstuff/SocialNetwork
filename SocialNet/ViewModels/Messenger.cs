@@ -8,10 +8,11 @@ namespace SocialNet.ViewModels
     public class Messenger
     {
         public int Id { get; set; }
-        public string UserOne { get; set; }
-        public string UserTwo { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
         public string MessageBody { get; set; }
         public DateTime? TimeSent { get; set; }
+        public bool Connected { get; set; }
 
         public Messenger()
         {
