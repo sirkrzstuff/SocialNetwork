@@ -19,5 +19,8 @@ namespace SocialNet.ViewModels
         public FriendList ConnectionFriendlistForm { get; set; }
         public IEnumerable<Groups> ConnectionGroups { get; set; }
         public Groups ConnectionGroupsForm { get; set; }
+
+        public IEnumerable<Photo> ConnectionPhotos { get; set; }
+        public Photo ConnectionsPhotoForm { get; set; }
     }
 }

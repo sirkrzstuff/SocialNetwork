@@ -26,6 +26,7 @@ namespace SocialNet.Controllers
         FriendListService friend_Service = new FriendListService();
         GroupService group_Service = new GroupService();
         CommentService comment_Service = new CommentService();
+        PhotoService photo_Service = new PhotoService();
 
         [Authorize]
         public ActionResult Index()
@@ -60,11 +61,12 @@ namespace SocialNet.Controllers
         [Authorize]
         public ActionResult Profile(int? id)
         {
-            //Instances filled with content
             model.ConnectionUsers = user_Service.GetAllUsers();
             model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
             model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
             model.ConnectionGroups = group_Service.GetAllGroups();
+            model.ConnectionComments = comment_Service.GetAllComments();
+            model.ConnectionUserForm = user_Service.GetUserById(id);
 
             if (id == null)
             {
@@ -94,8 +96,19 @@ namespace SocialNet.Controllers
         [Authorize]
         public ActionResult ProfileBar()
         {
-            return View();
+            return View("Profile", model);
         }
 
+        public ActionResult ProfilePhotos(string userName)
+        {
+            model.ConnectionUsers = user_Service.GetAllUsers();
+            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_Service.GetAllGroups();
+            model.ConnectionPhotos = photo_Service.GetPhotosFromUserName(userName);
+            model.ConnectionUserForm = user_Service.GetUserByEmail(userName);
+
+            return View("ProfilePhotos", model);
+        }
     }
 }

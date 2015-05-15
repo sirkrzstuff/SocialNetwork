@@ -4,11 +4,11 @@
     ViewBag.Title = "Search!";
 }
 
-@{Html.RenderPartial("LoginBar", "Shared");}
+@{Html.RenderPartial("LoginBar", Model);}
 <body>
     <div class="main-container">
         <div class="form-horizontal">
-            <div style="padding: 0px 0px 0px 25px;"><h3>Search for friends!</h3></div>
+            <div style="padding-left: 25px;"><h3>Search for friends!</h3></div>
             <hr />
             <div class="wall-posts">
                 @using (Html.BeginForm())

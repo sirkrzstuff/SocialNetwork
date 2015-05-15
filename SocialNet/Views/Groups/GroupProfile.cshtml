@@ -5,7 +5,7 @@
 }
 
 <body>
-    @{Html.RenderPartial("LoginBar", "Shared");}
+    @{Html.RenderPartial("LoginBar", Model);}
     <div class="main-container">
         <div class="Group-photo-container">
             <input type="image" src="@Model.ConnectionGroupsForm.GroupPhoto" class="group-img" alt="The Groups Image" />

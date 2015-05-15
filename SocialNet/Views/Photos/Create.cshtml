@@ -1,60 +1,57 @@
-﻿@model SocialNet.ViewModels.Photo
+﻿@model SocialNet.ViewModels.ConnectionViewModel
 
 @{
-    Layout = null;
+    ViewBag.Title = "Add a photo";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
+@{
+    
+}
 <body>
-    @using (Html.BeginForm()) 
-    {
-        @Html.AntiForgeryToken()
-        
-        <div class="form-horizontal">
-            <h4>Photo</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @{Html.RenderPartial("LoginBar", Model);}
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.PhotoUrl, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PhotoUrl, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PhotoUrl, "", new { @class = "text-danger" })
-                </div>
-            </div>
+    <div class="main-container">
+        <div class="wall-posts">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.PhotoCaption, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PhotoCaption, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PhotoCaption, "", new { @class = "text-danger" })
+                <div class="form-horizontal">
+                    <h3>Upload a photo</h3>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ConnectionsPhotoForm.PhotoUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ConnectionsPhotoForm.PhotoUrl, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ConnectionsPhotoForm.PhotoUrl, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ConnectionsPhotoForm.PhotoCaption, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ConnectionsPhotoForm.PhotoCaption, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ConnectionsPhotoForm.PhotoCaption, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ConnectionsPhotoForm.PhotoAlbum, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ConnectionsPhotoForm.PhotoAlbum, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ConnectionsPhotoForm.PhotoAlbum, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
                 </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(model => model.PhotoAlbum, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PhotoAlbum, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PhotoAlbum, "", new { @class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
+            }
         </div>
-    }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
     </div>
 </body>
-</html>
+@Html.Partial("RightBar", Model)

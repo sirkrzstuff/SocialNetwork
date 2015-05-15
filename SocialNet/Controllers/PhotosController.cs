@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SocialNet.Models;
 using SocialNet.ViewModels;
+using SocialNet.Service;
 
 namespace SocialNet.Controllers
 {
@@ -15,9 +16,25 @@ namespace SocialNet.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        //Connection for the viewmodels created
+        ConnectionViewModel model = new ConnectionViewModel();
+
+        //Service instances created
+        UserService user_Service = new UserService();
+        StatusService status_Service = new StatusService();
+        FriendListService friend_Service = new FriendListService();
+        GroupService group_Service = new GroupService();
+        CommentService comment_Service = new CommentService();
+        PhotoService photo_Service = new PhotoService();
+
         // GET: Photos
         public ActionResult Index()
         {
+            model.ConnectionUsers = user_Service.GetAllUsers();
+            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_Service.GetAllGroups();
+            model.ConnectionComments = comment_Service.GetAllComments();
             return View(db.Photos.ToList());
         }
 
@@ -39,7 +56,13 @@ namespace SocialNet.Controllers
         // GET: Photos/Create
         public ActionResult Create()
         {
-            return View();
+            model.ConnectionUsers = user_Service.GetAllUsers();
+            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_Service.GetAllGroups();
+            model.ConnectionComments = comment_Service.GetAllComments();
+
+            return View(model);
         }
 
         // POST: Photos/Create
@@ -47,17 +70,26 @@ namespace SocialNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PhotoCaption,PhotoUrl,UserName,PhotoDate,PhotoAlbum")] Photo photo)
+        public ActionResult Create(FormCollection form)
         {
             if (ModelState.IsValid)
             {
-                photo.UserName = this.User.Identity.Name;
-                db.Photos.Add(photo);
+                model.ConnectionsPhotoForm = new Photo
+                {
+                    PhotoUrl = form["ConnectionsPhotoForm.PhotoUrl"],
+                    PhotoCaption = form["ConnectionsPhotoForm.PhotoCaption"],
+                    Id = Convert.ToInt32(form["ConnectionsPhotoForm.PhotoUrl"]),
+                    PhotoDate = Convert.ToDateTime(form["ConnectionsPhotoForm.PhotoDate"]),
+                    UserName = this.User.Identity.Name,
+                    PhotoAlbum = Convert.ToInt32(form["ConnectionsPhotoForm.PhotoAlbum"])
+                };
+
+                db.Photos.Add(model.ConnectionsPhotoForm);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", model);
             }
 
-            return View(photo);
+            return View(form);
         }
 
         // GET: Photos/Edit/5

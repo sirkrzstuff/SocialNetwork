@@ -6,8 +6,8 @@
 }
 
 <body>
-    @{Html.RenderPartial("LoginBar", "Shared");}
-    @{Html.RenderPartial("ProfileBar", "Home");}
+    @{Html.RenderPartial("LoginBar", Model);}
+    @{Html.RenderPartial("ProfileBar", Model);}
     <div class="Profile-wall">
         <div class="wall-posts">
             <div class="About-container">
@@ -15,7 +15,7 @@
                 <div class="profile-about-text">
                     @{
                         UserService service = new UserService();
-                        var about = service.GetUserById(1);
+                        var about = service.GetUserById(Model.ConnectionUserForm.Id);
                     }
                     <p>@about.AboutUser</p>
                 </div>

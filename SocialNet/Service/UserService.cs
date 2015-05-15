@@ -36,7 +36,7 @@ namespace SocialNet.Service
             return model;
         }
 
-        public User GetUserById(int id)
+        public User GetUserById(int? id)
         {
             var model = (from usr in db.Users
                          where usr.Id == id

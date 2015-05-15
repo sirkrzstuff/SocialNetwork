@@ -1,0 +1,46 @@
+﻿@model SocialNet.ViewModels.ConnectionViewModel
+
+
+<body>
+    @{Html.RenderPartial("LoginBar", Model);}
+    <div class="main-container">
+        <div class="wall-posts">
+            @if (Model.ConnectionUserForm.UserName == User.Identity.Name)
+            {
+                <div class="add-photo">
+                    @Html.ActionLink("Upload a new photo", "Create", "Photos")
+                    <hr />
+                </div>
+            }
+            @{var check = 0;}
+            @foreach (var photo in Model.ConnectionPhotos)
+            {
+                if (photo.UserName == Model.ConnectionUserForm.UserName)
+                {
+                    <div class="photo-container">
+                        <p>Photo added on @photo.PhotoDate</p>
+                        <div><img src="@photo.PhotoUrl" alt="the image couldn't' load :(" /></div>
+                        <div class="photo-caption">@photo.PhotoCaption</div>
+                    </div>
+                    check++;
+                }
+            }
+            @if (check == 0)
+            {
+                if (Model.ConnectionUserForm.UserName == User.Identity.Name)
+                {
+                    <div class="no-photos">
+                        <p>You dont have any photos!</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="no-photos">
+                        <p>This person doesn't have any photos to display.</p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</body>
+@Html.Partial("RightBar", Model)

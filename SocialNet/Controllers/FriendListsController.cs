@@ -164,23 +164,33 @@ namespace SocialNet.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Search(SearchBar searchBar)
+        public ActionResult Search(FormCollection form)
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("SearchResults", new { searchString = searchBar.SearchString });
+                model.ConnectionSearchbar = new SearchBar
+                {
+                    SearchString = form["ConnectionSearchbar.SearchString"]
+                };
+
+                return RedirectToAction("SearchResults", new { searchString = model.ConnectionSearchbar.SearchString });
             }
             return RedirectToAction("Index");
         }
 
         public ActionResult SearchResults(string searchString)
         {
+            model.ConnectionUsers = user_Service.GetAllUsers();
+            model.ConnectionUserStatuses = status_Service.GetLatestStatuses();
+            model.ConnectionFriendlist = friend_Service.GetAllFriends(this.User.Identity.Name);
+            model.ConnectionGroups = group_Service.GetAllGroups();
+            
             var split = searchString.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
             var users = db.Users.Where(u => split.Contains(u.FirstName.ToLower()) || split.Contains(u.LastName.ToLower()));
             var personas = db.Personas.Where(u => split.Contains(u.Name.ToLower()));
-            var results = new SearchResults { SearchString = searchString, Users = users.ToList(), Personas = personas.ToList() };
+            model.ConnectionSearchresults = new SearchResults { SearchString = searchString, Users = users.ToList(), Personas = personas.ToList() };
 
-            return View(results);
+            return View(model);
         }
 
         public ActionResult AddAsFriend(string friend)

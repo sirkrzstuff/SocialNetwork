@@ -1,29 +1,49 @@
-﻿@using Microsoft.AspNet.Identity;
+﻿@model SocialNet.ViewModels.ConnectionViewModel
+@using Microsoft.AspNet.Identity;
+@using SocialNet.Service;
 <div class="profile-nav">
     <div>
         <input type="image" alt="Profile Image" class="img-rounded profile-image" src="~/Content/images/default.png" />
         <div class="profile-name">
-            @User.Identity.GetUserName()
+            @{
+                string firstName = Model.ConnectionUserForm.FirstName;
+                firstName = char.ToUpper(firstName[0]) + firstName.Substring(1);
+                string lastName = Model.ConnectionUserForm.LastName;
+                lastName = char.ToUpper(lastName[0]) + lastName.Substring(1);
+                string fullName = firstName + " " + lastName;
+            }
+            @(fullName)
         </div>
         <div class="user-info-profileNav">
-            <p>Age: </p>
-            <p>Sex: </p>
-            <p>Relationship: </p>
+            @{
+                int age = (DateTime.Now.Year) - (Model.ConnectionUserForm.DateOfBirth.Value.Year);
+                string gender = "";
+                if(Model.ConnectionUserForm.IsMale == true)
+                { gender = "Male"; }else { gender = "Female"; }
+                string single = "";
+                if(Model.ConnectionUserForm.IsSingle == true)
+                { single = "Single"; } else { single = "In a relationship"; }
+                
+            }
+            <p>Age: @age</p>
+            <p>Sex: @gender</p>
+            <p>Relationship: @single </p>
+        </div>
+    </div>
+    @{
+        if (Model.ConnectionUserForm.UserName == User.Identity.Name)
+        {
+            <div class="profile-links">
+                <input type="button" value="Edit Profile" class="profile-buttons-edit" />
+            </div>
+        }
+    }
+    <div class="profile-links">
+        <div class="profile-buttons-edit">
+            @Html.ActionLink("Photos", "ProfilePhotos", new { userName = Model.ConnectionUserForm.UserName })
         </div>
     </div>
     <div class="profile-links">
-        <input type="button" value="Edit Profile" class="profile-buttons-edit" />
-    </div>
-    <div class="profile-links">
-        <input type="button" value="Photos" class="profile-buttons" />
-    </div>
-    <div class="profile-links">
-        <input type="button" value="Friends" class="profile-buttons" />
-    </div>
-    <div class="profile-links">
-        <input type="button" value="Interests" class="profile-buttons" />
-    </div>
-    <div class="profile-links">
-        <input type="button" value="Following" class="profile-buttons" />
+        <button type="button" value="Friends" class="profile-buttons" />
     </div>
 </div>
